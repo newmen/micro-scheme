@@ -4,7 +4,7 @@
 #include "context.h"
 #include "utils.h"
 
-Sequence::Sequence(const Keyword *name, const Statements &args) : _head(name), _statements(args)
+Sequence::Sequence(const Keyword *name, const Symbols &args) : _head(name), _symbols(args)
 {
 }
 
@@ -12,7 +12,7 @@ std::string Sequence::inspect() const
 {
     std::stringstream ss;
     ss << "(" << _head->inspect();
-    for (const Statement *s : _statements)
+    for (const Symbol *s : _symbols)
     {
         ss << " " << s->inspect();
     }
@@ -24,7 +24,7 @@ std::string Sequence::inspect() const
 const Data *Sequence::call(const Context *context) const
 {
     Arguments args;
-    for (const Statement *s : _statements)
+    for (const Symbol *s : _symbols)
     {
         args.push_back(s->call(context));
     }

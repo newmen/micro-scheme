@@ -2,10 +2,10 @@
 #define NUMBER_H
 
 #include "constant.h"
-#include "statement.h"
+#include "symbol.h"
 #include "context.h"
 
-class Number : public Constant<double>, public Statement
+class Number : public Constant<double>, public Symbol
 {
 public:
     Number(double value);

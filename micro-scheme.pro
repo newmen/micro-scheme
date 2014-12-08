@@ -22,7 +22,6 @@ SOURCES += main.cpp \
     lang/keyword.cpp
 
 HEADERS += \
-    lang/statement.h \
     lang/sequence.h \
     lang/parser.h \
     lang/utils.h \
@@ -31,7 +30,6 @@ HEADERS += \
     lang/function.h \
     lang/global_context.h \
     lang/funcs/plus.h \
-    lang/statements.h \
     lang/arguments.h \
     lang/funcs/minus.h \
     lang/funcs/mul.h \
@@ -44,5 +42,7 @@ HEADERS += \
     lang/scavenger.h \
     lang/garbage.h \
     lang/funcs/if.h \
-    lang/keyword.h
+    lang/keyword.h \
+    lang/symbol.h \
+    lang/symbols.h
 

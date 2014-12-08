@@ -31,7 +31,7 @@ private:
 public:
     Parser(std::istream &stream);
 
-    const Statement *read();
+    const Symbol *read();
 
 private:
     void skipSpaces();

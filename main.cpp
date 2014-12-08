@@ -2,7 +2,7 @@
 #include "error.h"
 #include "lang/scavenger.h"
 #include "lang/global_context.h"
-#include "lang/statement.h"
+#include "lang/symbol.h"
 #include "lang/parser.h"
 
 int main()
@@ -14,13 +14,13 @@ int main()
         // REPL
         while (true)
         {
-            const Statement *statement = nullptr;
+            const Symbol *symbol = nullptr;
             std::cout << ">> ";
 
-            statement = parser.read();
-            if (statement)
+            symbol = parser.read();
+            if (symbol)
             {
-                const Data *data = statement->call(GlobalContext::instance());
+                const Data *data = symbol->call(GlobalContext::instance());
                 std::cout << data->value() << std::endl;
             }
             else

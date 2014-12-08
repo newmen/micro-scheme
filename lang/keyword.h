@@ -2,10 +2,10 @@
 #define KEYWORD_H
 
 #include <string>
-#include "statement.h"
+#include "symbol.h"
 #include "context.h"
 
-class Keyword : public Statement
+class Keyword : public Symbol
 {
     const std::string _name;
 

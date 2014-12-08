@@ -26,7 +26,7 @@ public:
     struct UndefinedError : public Error
     {
         UndefinedError(const std::string &name) :
-            Error(std::string("Undefined ") + name + " statement") {}
+            Error(std::string("Undefined ") + name + " symbol") {}
     };
 
     Context(Context *parent = nullptr);

@@ -6,7 +6,7 @@ Parser::Parser(std::istream &stream) : _stream(stream)
 {
 }
 
-const Statement *Parser::read()
+const Symbol *Parser::read()
 {
     skipSpaces();
 
@@ -115,7 +115,7 @@ const Number *Parser::readNumber()
 const Sequence *Parser::readSequence()
 {
     const Keyword *name = nullptr;
-    Statements statements;
+    Symbols symbols;
 
     char c;
     while (true)
@@ -136,7 +136,7 @@ const Sequence *Parser::readSequence()
             name = readKeyword();
         }
 
-        statements.push_back(read());
+        symbols.push_back(read());
     }
 
     if (!name)
@@ -144,7 +144,7 @@ const Sequence *Parser::readSequence()
         throw ParseError("Invalid empty sequence");
     }
 
-    return new Sequence(name, statements);
+    return new Sequence(name, symbols);
 }
 
 bool Parser::bos(char c) const

@@ -12,7 +12,7 @@ std::string Keyword::inspect() const
 
 const Data *Keyword::call(const Context *) const
 {
-    throw Error("Could not get value for non data statement");
+    throw Error("Could not get value for non data symbol");
     return nullptr;
 }
 

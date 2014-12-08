@@ -2,17 +2,17 @@
 #define SEQUENCE_H
 
 #include <list>
-#include "statement.h"
+#include "symbol.h"
 #include "keyword.h"
-#include "statements.h"
+#include "symbols.h"
 
-class Sequence : public Statement
+class Sequence : public Symbol
 {
     const Keyword *_head;
-    const Statements _statements;
+    const Symbols _symbols;
 
 public:
-    Sequence(const Keyword *name, const Statements &args);
+    Sequence(const Keyword *name, const Symbols &args);
 
     std::string inspect() const override;
     const Data *call(const Context *context) const override;
