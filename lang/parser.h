@@ -4,7 +4,7 @@
 #include <istream>
 #include "error.h"
 #include "number.h"
-#include "word.h"
+#include "keyword.h"
 #include "sequence.h"
 
 class Parser
@@ -36,7 +36,7 @@ public:
 private:
     void skipSpaces();
 
-    const Word *readWord();
+    const Keyword *readKeyword();
     const Number *readNumber();
     const Sequence *readSequence();
 

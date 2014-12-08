@@ -12,14 +12,14 @@ SOURCES += main.cpp \
     lang/sequence.cpp \
     lang/parser.cpp \
     lang/context.cpp \
-    lang/word.cpp \
     lang/global_context.cpp \
     lang/data.cpp \
     lang/number.cpp \
     lang/boolean.cpp \
     lang/scavenger.cpp \
     lang/garbage.cpp \
-    lang/function.cpp
+    lang/function.cpp \
+    lang/keyword.cpp
 
 HEADERS += \
     lang/statement.h \
@@ -29,7 +29,6 @@ HEADERS += \
     lang/context.h \
     lang/error.h \
     lang/function.h \
-    lang/word.h \
     lang/global_context.h \
     lang/funcs/plus.h \
     lang/statements.h \
@@ -44,5 +43,6 @@ HEADERS += \
     lang/funcs/eq.h \
     lang/scavenger.h \
     lang/garbage.h \
-    lang/funcs/if.h
+    lang/funcs/if.h \
+    lang/keyword.h
 

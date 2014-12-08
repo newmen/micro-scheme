@@ -3,16 +3,16 @@
 
 #include <list>
 #include "statement.h"
-#include "word.h"
+#include "keyword.h"
 #include "statements.h"
 
 class Sequence : public Statement
 {
-    const Word *_head;
+    const Keyword *_head;
     const Statements _statements;
 
 public:
-    Sequence(const Word *name, const Statements &args);
+    Sequence(const Keyword *name, const Statements &args);
 
     std::string inspect() const override;
     const Data *call(const Context *context) const override;

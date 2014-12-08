@@ -28,7 +28,7 @@ const Statement *Parser::read()
     else if (std::isalpha(c))
     {
         _stream.putback(c);
-        return readWord();
+        return readKeyword();
     }
     else
     {
@@ -52,7 +52,7 @@ void Parser::skipSpaces()
     }
 }
 
-const Word *Parser::readWord()
+const Keyword *Parser::readKeyword()
 {
     std::string word;
     char c;
@@ -81,7 +81,7 @@ const Word *Parser::readWord()
         }
     }
 
-    return new Word(word);
+    return new Keyword(word);
 }
 
 const Number *Parser::readNumber()
@@ -114,7 +114,7 @@ const Number *Parser::readNumber()
 
 const Sequence *Parser::readSequence()
 {
-    const Word *name = nullptr;
+    const Keyword *name = nullptr;
     Statements statements;
 
     char c;
@@ -133,7 +133,7 @@ const Sequence *Parser::readSequence()
 
         if (!name)
         {
-            name = readWord();
+            name = readKeyword();
         }
 
         statements.push_back(read());

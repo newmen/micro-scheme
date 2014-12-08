@@ -4,7 +4,7 @@
 #include "context.h"
 #include "utils.h"
 
-Sequence::Sequence(const Word *name, const Statements &args) : _head(name), _statements(args)
+Sequence::Sequence(const Keyword *name, const Statements &args) : _head(name), _statements(args)
 {
 }
 

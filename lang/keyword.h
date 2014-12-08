@@ -1,16 +1,16 @@
-#ifndef WORD_H
-#define WORD_H
+#ifndef KEYWORD_H
+#define KEYWORD_H
 
 #include <string>
 #include "statement.h"
 #include "context.h"
 
-class Word : public Statement
+class Keyword : public Statement
 {
     const std::string _name;
 
 public:
-    Word(const std::string &name);
+    Keyword(const std::string &name);
 
     std::string inspect() const override;
     const Data *call(const Context *) const override;
@@ -18,4 +18,4 @@ public:
     std::string name() const;
 };
 
-#endif // WORD_H
+#endif // KEYWORD_H
