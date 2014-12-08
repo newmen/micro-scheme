@@ -4,6 +4,7 @@
 
 Garbage::Garbage()
 {
+    // There is direct pointer to Garbage
     Scavenger::instance()->mark(this);
 }
 

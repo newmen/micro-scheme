@@ -11,6 +11,7 @@ public:
 
     const Data *call(const Arguments &args) const
     {
+        // TODO: not optimized comparison
         return new Boolean(args.front()->value() == args.back()->value());
     }
 };
