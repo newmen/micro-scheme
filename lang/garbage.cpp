@@ -1,19 +1,19 @@
-#include "garbage.h"
+#include "object.h"
 #include <sstream>
 #include "scavenger.h"
 
-Garbage::Garbage()
+Object::Object()
 {
     // There is direct pointer to Garbage
     Scavenger::instance()->mark(this);
 }
 
-Garbage::~Garbage()
+Object::~Object()
 {
     Scavenger::instance()->unmark(this);
 }
 
-std::string Garbage::inspect() const
+std::string Object::inspect() const
 {
     std::stringstream ss;
     ss << "<" << this << ">";

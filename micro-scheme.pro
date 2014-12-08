@@ -40,9 +40,9 @@ HEADERS += \
     lang/constant.h \
     lang/funcs/eq.h \
     lang/scavenger.h \
-    lang/garbage.h \
     lang/funcs/if.h \
     lang/keyword.h \
     lang/symbol.h \
-    lang/symbols.h
+    lang/symbols.h \
+    lang/object.h
 

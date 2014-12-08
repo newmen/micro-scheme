@@ -26,7 +26,7 @@ Scavenger::~Scavenger()
     }
 }
 
-void Scavenger::mark(const Garbage *object)
+void Scavenger::mark(const Object *object)
 {
 //    std::cout << "mark: " << object->inspect() << std::endl;
     Objects::iterator it = _objects.find(object);
@@ -35,7 +35,7 @@ void Scavenger::mark(const Garbage *object)
     _objects.insert(object);
 }
 
-void Scavenger::unmark(const Garbage *object)
+void Scavenger::unmark(const Object *object)
 {
 //    std::cout << "unmark: " << object->inspect() << std::endl;
     Objects::iterator it = _objects.find(object);

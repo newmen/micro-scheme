@@ -7,7 +7,7 @@ Keyword::Keyword(const std::string &name) : _name(name)
 
 std::string Keyword::inspect() const
 {
-    return _name + Garbage::inspect();
+    return _name + Object::inspect();
 }
 
 const Data *Keyword::call(const Context *) const

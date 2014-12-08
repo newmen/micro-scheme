@@ -2,7 +2,7 @@
 
 std::string Data::inspect() const
 {
-    return value() + Garbage::inspect();
+    return value() + Object::inspect();
 }
 
 bool Data::getBoolean() const

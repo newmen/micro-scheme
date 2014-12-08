@@ -2,5 +2,5 @@
 
 std::string Function::inspect() const
 {
-    return std::string("Function") + Garbage::inspect();
+    return std::string("Function") + Object::inspect();
 }

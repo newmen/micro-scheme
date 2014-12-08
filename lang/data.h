@@ -1,13 +1,13 @@
 #ifndef DATA_H
 #define DATA_H
 
-#include "garbage.h"
+#include "object.h"
 #include "error.h"
 
 class Function;
 
 // interface
-class Data : virtual public Garbage
+class Data : virtual public Object
 {
     struct TypeError : public Error
     {

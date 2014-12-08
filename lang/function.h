@@ -2,13 +2,13 @@
 #define FUNCTION_H
 
 #include <string>
-#include "garbage.h"
+#include "object.h"
 #include "arguments.h"
 #include "error.h"
 #include "utils.h"
 
 // interface
-class Function : virtual public Garbage
+class Function : virtual public Object
 {
 protected:
     Function() = default;

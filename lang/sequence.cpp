@@ -18,7 +18,7 @@ std::string Sequence::inspect() const
     }
     ss << ")";
 
-    return ss.str() + Garbage::inspect();
+    return ss.str() + Object::inspect();
 }
 
 const Data *Sequence::call(const Context *context) const

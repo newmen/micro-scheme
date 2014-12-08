@@ -3,11 +3,11 @@
 
 #include <unordered_map>
 #include <string>
-#include "garbage.h"
+#include "object.h"
 #include "error.h"
 #include "function.h"
 
-class Context : virtual public Garbage
+class Context : virtual public Object
 {
 protected:
     typedef std::unordered_map<std::string, const Function *> Table;

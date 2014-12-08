@@ -1,13 +1,13 @@
 #ifndef SYMBOL_H
 #define SYMBOL_H
 
-#include "garbage.h"
+#include "object.h"
 #include "data.h"
 
 class Context;
 
 // interface
-class Symbol : virtual public Garbage
+class Symbol : virtual public Object
 {
 protected:
     Symbol() = default;
