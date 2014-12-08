@@ -1,14 +1,14 @@
-#ifndef MINUS_H
-#define MINUS_H
+#ifndef DIVIDE_H
+#define DIVIDE_H
 
 #include "../fixed_arity_function.h"
 
-struct Minus : public FixedArityFunction
+struct Divide : public FixedArityFunction
 {
-    Minus();
+    Divide();
 
 protected:
     const Object *safeCall(const Context *context, const Objects &args) const override;
 };
 
-#endif // MINUS_H
+#endif // DIVIDE_H

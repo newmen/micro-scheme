@@ -17,9 +17,13 @@ class FixedArityFunction : public Function
 
 protected:
     FixedArityFunction(unsigned arity);
-    FixedArityFunction(Context *context, unsigned arity);
 
-    void checkArity(const Arguments &args) const;
+    virtual const Object *safeCall(const Context *context, const Objects &args) const = 0;
+public:
+    const Object *call(const Context *context, const Objects &args) const override;
+
+protected:
+    void checkArity(const Objects &args) const;
 };
 
 #endif // FIXED_ARITY_FUNCTION_H

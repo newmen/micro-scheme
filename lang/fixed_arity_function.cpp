@@ -4,12 +4,13 @@ FixedArityFunction::FixedArityFunction(unsigned arity) : _arity(arity)
 {
 }
 
-FixedArityFunction::FixedArityFunction(Context *context, unsigned arity) :
-    Function(context), _arity(arity)
+const Object *FixedArityFunction::call(const Context *context, const Objects &args) const
 {
+    checkArity(args);
+    return safeCall(context, args);
 }
 
-void FixedArityFunction::checkArity(const Arguments &args) const
+void FixedArityFunction::checkArity(const Objects &args) const
 {
     unsigned argsNum = args.size();
     if (_arity != argsNum)

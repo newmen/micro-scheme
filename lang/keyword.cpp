@@ -10,10 +10,9 @@ std::string Keyword::inspect() const
     return _name + Object::inspect();
 }
 
-const Object *Keyword::invoke(const Context *) const
+const Object *Keyword::invoke(const Context *context) const
 {
-    throw Error("Could not get value for non data symbol");
-    return nullptr;
+    return context->get(_name)->call(context);
 }
 
 std::string Keyword::name() const

@@ -107,7 +107,7 @@ const Number *Parser::readNumber()
 
 const Sequence *Parser::readSequence()
 {
-    Arguments symbols;
+    Objects symbols;
 
     char c;
     while (true)
@@ -134,9 +134,23 @@ const Sequence *Parser::readSequence()
     return new Sequence(symbols);
 }
 
-bool Parser::bon(char c) const
+bool Parser::bon(char c)
 {
-    return std::isdigit(c) || c == '-';
+    if (std::isdigit(c))
+    {
+        return true;
+    }
+    else if (c == '-')
+    {
+        char n;
+        n = _stream.get();
+        _stream.putback(n);
+        return std::isdigit(n);
+    }
+    else
+    {
+        return false;
+    }
 }
 
 bool Parser::bos(char c) const

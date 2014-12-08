@@ -3,7 +3,7 @@
 
 #include <string>
 #include "object.h"
-#include "arguments.h"
+#include "objects.h"
 #include "error.h"
 #include "utils.h"
 
@@ -12,20 +12,16 @@ class Context;
 // interface
 class Function : virtual public Object
 {
-    Context *_context;
-
 protected:
-    Function();
-    Function(Context *context);
+    Function() = default;
 
 public:
     virtual ~Function() {}
 
     std::string inspect() const override;
-    virtual const Object *call(const Arguments &args) const = 0;
 
-protected:
-    const Context *context() const;
+    const Object *call(const Context *context) const;
+    virtual const Object *call(const Context *context, const Objects &args) const = 0;
 };
 
 #endif // FUNCTION_H

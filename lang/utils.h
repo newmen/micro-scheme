@@ -3,12 +3,18 @@
 
 #include <string>
 #include <sstream>
+#include "object.h"
+#include "data.h"
+
+class Context;
 
 class Utils
 {
 public:
     template <class T>
     static std::string toString(const T &value);
+
+    static const Data *getData(const Context *context, const Object *object);
 };
 
 ///////////////////////////////////////////////////////////////////////////////

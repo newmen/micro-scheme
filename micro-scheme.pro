@@ -20,7 +20,17 @@ SOURCES += main.cpp \
     lang/function.cpp \
     lang/keyword.cpp \
     lang/object.cpp \
-    lang/fixed_arity_function.cpp
+    lang/fixed_arity_function.cpp \
+    lang/meta_function.cpp \
+    lang/user_function.cpp \
+    lang/funcs/plus.cpp \
+    lang/funcs/minus.cpp \
+    lang/funcs/multiply.cpp \
+    lang/funcs/divide.cpp \
+    lang/funcs/if.cpp \
+    lang/funcs/eq.cpp \
+    lang/funcs/define.cpp \
+    lang/utils.cpp
 
 HEADERS += \
     lang/sequence.h \
@@ -32,8 +42,6 @@ HEADERS += \
     lang/global_context.h \
     lang/funcs/plus.h \
     lang/funcs/minus.h \
-    lang/funcs/mul.h \
-    lang/funcs/div.h \
     lang/number.h \
     lang/data.h \
     lang/boolean.h \
@@ -44,7 +52,12 @@ HEADERS += \
     lang/keyword.h \
     lang/symbol.h \
     lang/object.h \
-    lang/arguments.h \
-    lang/default.h \
-    lang/fixed_arity_function.h
+    lang/fixed_arity_function.h \
+    lang/funcs/define.h \
+    lang/meta_function.h \
+    lang/objects.h \
+    lang/keywords.h \
+    lang/user_function.h \
+    lang/funcs/divide.h \
+    lang/funcs/multiply.h
 

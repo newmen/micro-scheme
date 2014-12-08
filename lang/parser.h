@@ -38,7 +38,7 @@ private:
     const Number *readNumber();
     const Sequence *readSequence();
 
-    bool bon(char c) const;
+    bool bon(char c);
     bool bos(char c) const;
     bool eos(char c) const;
 };

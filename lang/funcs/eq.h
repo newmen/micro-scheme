@@ -2,21 +2,13 @@
 #define EQ_H
 
 #include "../fixed_arity_function.h"
-#include "../default.h"
-#include "../boolean.h"
 
-class Eq : public Default<FixedArityFunction>
+struct Eq : public FixedArityFunction
 {
-public:
-    Eq() : Default(2) {}
+    Eq();
 
-    const Object *call(const Arguments &args) const
-    {
-        const Data *first = getData(args.front());
-        const Data *second = getData(args.back());
-        // TODO: not optimized comparison
-        return new Boolean(first->value() == second->value());
-    }
+protected:
+    const Object *safeCall(const Context *context, const Objects &args) const override;
 };
 
 #endif // EQ_H

@@ -12,7 +12,7 @@ class Context : virtual public Object
     typedef std::unordered_map<std::string, const Function *> Table;
 
     Table _table;
-    Context *_parent;
+    const Context *_parent;
 
     struct DuplicationError : public Error
     {
@@ -27,7 +27,7 @@ class Context : virtual public Object
     };
 
 public:
-    Context(Context *parent = nullptr);
+    Context(const Context *parent = nullptr);
     virtual ~Context() {}
 
     std::string inspect() const override;

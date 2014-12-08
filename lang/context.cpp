@@ -1,6 +1,6 @@
 #include "context.h"
 
-Context::Context(Context *parent) : _parent(parent)
+Context::Context(const Context *parent) : _parent(parent)
 {
 }
 

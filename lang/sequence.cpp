@@ -2,27 +2,19 @@
 #include <sstream>
 #include "context.h"
 #include "keyword.h"
+#include "error.h"
 
-Sequence::Sequence(const Arguments &args) : _symbols(args)
+Sequence::Sequence(const Objects &args) : _symbols(args)
 {
 }
 
 std::string Sequence::inspect() const
 {
     std::stringstream ss;
-    bool isFirst = true;
-    ss << "(";
-    for (const Object *s : _symbols)
+    ss << "(" << head()->inspect();
+    for (const Object *s : tail())
     {
-        if (isFirst)
-        {
-            isFirst = false;
-        }
-        else
-        {
-            ss << " ";
-        }
-        ss << s->inspect();
+        ss << " " << s->inspect();
     }
     ss << ")";
 
@@ -31,15 +23,28 @@ std::string Sequence::inspect() const
 
 const Object *Sequence::invoke(const Context *context) const
 {
-    Arguments args(_symbols);
-    const Object *first = args.front();
-    args.pop_front();
-
-    const Keyword *key = dynamic_cast<const Keyword *>(first);
+    const Keyword *key = dynamic_cast<const Keyword *>(head());
     if (!key)
     {
-        throw Error("First item of sequence doesn't a keyword");
+        throw Error("First item of sequence is not a keyword");
     }
 
-    return context->get(key->name())->call(args);
+    return context->get(key->name())->call(context, tail());
+}
+
+const Objects &Sequence::symbols() const
+{
+    return _symbols;
+}
+
+const Object *Sequence::head() const
+{
+    return _symbols.front();
+}
+
+Objects Sequence::tail() const
+{
+    Objects result(_symbols);
+    result.pop_front();
+    return result;
 }
