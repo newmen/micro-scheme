@@ -1,6 +1,6 @@
 #include "scavenger.h"
 #include <assert.h>
-#include <iostream>
+//#include <iostream>
 
 Scavenger *Scavenger::__instance = nullptr;
 Scavenger *Scavenger::instance()
@@ -28,7 +28,7 @@ Scavenger::~Scavenger()
 
 void Scavenger::mark(const Garbage *object)
 {
-    std::cout << "mark: " << object->inspect() << std::endl;
+//    std::cout << "mark: " << object->inspect() << std::endl;
     Objects::iterator it = _objects.find(object);
     assert(it == _objects.end());
 
@@ -37,7 +37,7 @@ void Scavenger::mark(const Garbage *object)
 
 void Scavenger::unmark(const Garbage *object)
 {
-    std::cout << "unmark: " << object->inspect() << std::endl;
+//    std::cout << "unmark: " << object->inspect() << std::endl;
     Objects::iterator it = _objects.find(object);
     assert(it != _objects.end());
 
