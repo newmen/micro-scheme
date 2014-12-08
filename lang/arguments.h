@@ -1,9 +1,9 @@
-#ifndef ARGUMENTS_H
-#define ARGUMENTS_H
+#ifndef SYMBOLS_H
+#define SYMBOLS_H
 
 #include <list>
-#include "data.h"
+#include "object.h"
 
-typedef std::list<const Data *> Arguments;
+typedef std::list<const Object *> Arguments;
 
-#endif // ARGUMENTS_H
+#endif // SYMBOLS_H

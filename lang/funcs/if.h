@@ -1,19 +1,20 @@
 #ifndef IF_H
 #define IF_H
 
-#include "../function.h"
+#include "../fixed_arity_function.h"
+#include "../default.h"
 
-class If : public FixedArityFunction
+class If : public Default<FixedArityFunction>
 {
 public:
-    If() : FixedArityFunction(3) {}
+    If() : Default(3) {}
 
-    const Data *call(const Arguments &args) const
+    const Object *call(const Arguments &args) const
     {
         Arguments::const_iterator it = args.begin();
-        const Data *condition = *it;
-        const Data *truthy = *(++it);
-        const Data *falsey = *(++it);
+        const Data *condition = getData(*it);
+        const Data *truthy = getData(*(++it));
+        const Data *falsey = getData(*(++it));
 
         return condition->getBoolean() ? truthy : falsey;
     }

@@ -11,14 +11,12 @@ class Parser
 {
     std::istream &_stream;
 
-public:
     struct ParseError : public Error
     {
         ParseError(const std::string &message) :
             Error(message + ", when parsing") {}
     };
 
-private:
     struct SymbolError : public ParseError
     {
         SymbolError(const std::string &message, char symbol) :
@@ -40,6 +38,7 @@ private:
     const Number *readNumber();
     const Sequence *readSequence();
 
+    bool bon(char c) const;
     bool bos(char c) const;
     bool eos(char c) const;
 };

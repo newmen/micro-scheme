@@ -1,5 +1,4 @@
 #include "parser.h"
-#include "arguments.h"
 #include "utils.h"
 
 Parser::Parser(std::istream &stream) : _stream(stream)
@@ -20,22 +19,16 @@ const Symbol *Parser::read()
     {
         return readSequence();
     }
-    else if (std::isdigit(c))
+    else if (bon(c))
     {
         _stream.putback(c);
         return readNumber();
     }
-    else if (std::isalpha(c))
+    else
     {
         _stream.putback(c);
         return readKeyword();
     }
-    else
-    {
-        throw SymbolError("Unexpected symbol", c);
-    }
-
-    return nullptr; // for except compilation warning
 }
 
 void Parser::skipSpaces()
@@ -88,13 +81,13 @@ const Number *Parser::readNumber()
 {
     char c;
     c = _stream.get();
-    if (!std::isdigit(c))
+    if (bon(c))
     {
-        throw SymbolError("Expected number, but was readed", c);
+        _stream.putback(c);
     }
     else
     {
-        _stream.putback(c);
+        throw SymbolError("Expected number, but was readed", c);
     }
 
     double number;
@@ -114,8 +107,7 @@ const Number *Parser::readNumber()
 
 const Sequence *Parser::readSequence()
 {
-    const Keyword *name = nullptr;
-    Symbols symbols;
+    Arguments symbols;
 
     char c;
     while (true)
@@ -131,20 +123,20 @@ const Sequence *Parser::readSequence()
             _stream.putback(c);
         }
 
-        if (!name)
-        {
-            name = readKeyword();
-        }
-
         symbols.push_back(read());
     }
 
-    if (!name)
+    if (symbols.empty())
     {
         throw ParseError("Invalid empty sequence");
     }
 
-    return new Sequence(name, symbols);
+    return new Sequence(symbols);
+}
+
+bool Parser::bon(char c) const
+{
+    return std::isdigit(c) || c == '-';
 }
 
 bool Parser::bos(char c) const

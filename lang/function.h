@@ -7,44 +7,25 @@
 #include "error.h"
 #include "utils.h"
 
+class Context;
+
 // interface
 class Function : virtual public Object
 {
+    Context *_context;
+
 protected:
-    Function() = default;
+    Function();
+    Function(Context *context);
 
 public:
     virtual ~Function() {}
 
     std::string inspect() const override;
-    virtual const Data *call(const Arguments &args) const = 0;
-};
-
-///////////////////////////////////////////////////////////////////////////////
-
-// interface
-class FixedArityFunction : public Function
-{
-    unsigned _arity;
-
-    struct ArityError : public Error
-    {
-        ArityError(unsigned current, unsigned passed) :
-            Error(std::string("Wrong number of arguments (") +
-                  Utils::toString(passed) + " for " + Utils::toString(current) + ")") {}
-    };
+    virtual const Object *call(const Arguments &args) const = 0;
 
 protected:
-    FixedArityFunction(unsigned arity) : _arity(arity) {}
-
-    void checkArity(const Arguments &args) const
-    {
-        unsigned argsNum = args.size();
-        if (_arity != argsNum)
-        {
-            throw ArityError(_arity, argsNum);
-        }
-    }
+    const Context *context() const;
 };
 
 #endif // FUNCTION_H

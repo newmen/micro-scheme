@@ -1,17 +1,21 @@
 #ifndef DIV_H
 #define DIV_H
 
-#include "../function.h"
+#include "../fixed_arity_function.h"
+#include "../default.h"
 #include "../number.h"
 
-struct Div : public FixedArityFunction
+struct Div : public Default<FixedArityFunction>
 {
-    Div() : FixedArityFunction(2) {}
+    Div() : Default(2) {}
 
-    const Data *call(const Arguments &args) const
+    const Object *call(const Arguments &args) const
     {
         checkArity(args);
-        return new Number(args.front()->getNumber() / args.back()->getNumber());
+
+        const Data *first = getData(args.front());
+        const Data *second = getData(args.back());
+        return new Number(first->getNumber() / second->getNumber());
     }
 };
 

@@ -9,14 +9,11 @@
 
 class Context : virtual public Object
 {
-protected:
     typedef std::unordered_map<std::string, const Function *> Table;
 
-private:
     Table _table;
     Context *_parent;
 
-public:
     struct DuplicationError : public Error
     {
         DuplicationError(const std::string &name) :
@@ -29,6 +26,7 @@ public:
             Error(std::string("Undefined ") + name + " symbol") {}
     };
 
+public:
     Context(Context *parent = nullptr);
     virtual ~Context() {}
 

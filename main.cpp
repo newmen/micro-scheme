@@ -20,8 +20,16 @@ int main()
             symbol = parser.read();
             if (symbol)
             {
-                const Data *data = symbol->call(GlobalContext::instance());
-                std::cout << data->value() << std::endl;
+                const Object *object = symbol->invoke(GlobalContext::instance());
+                const Data *data = dynamic_cast<const Data *>(object);
+                if (data)
+                {
+                    std::cout << data->value() << std::endl;
+                }
+                else
+                {
+                    std::cout << object->inspect() << std::endl;
+                }
             }
             else
             {

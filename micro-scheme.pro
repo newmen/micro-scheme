@@ -17,9 +17,10 @@ SOURCES += main.cpp \
     lang/number.cpp \
     lang/boolean.cpp \
     lang/scavenger.cpp \
-    lang/garbage.cpp \
     lang/function.cpp \
-    lang/keyword.cpp
+    lang/keyword.cpp \
+    lang/object.cpp \
+    lang/fixed_arity_function.cpp
 
 HEADERS += \
     lang/sequence.h \
@@ -30,7 +31,6 @@ HEADERS += \
     lang/function.h \
     lang/global_context.h \
     lang/funcs/plus.h \
-    lang/arguments.h \
     lang/funcs/minus.h \
     lang/funcs/mul.h \
     lang/funcs/div.h \
@@ -43,6 +43,8 @@ HEADERS += \
     lang/funcs/if.h \
     lang/keyword.h \
     lang/symbol.h \
-    lang/symbols.h \
-    lang/object.h
+    lang/object.h \
+    lang/arguments.h \
+    lang/default.h \
+    lang/fixed_arity_function.h
 

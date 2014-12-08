@@ -13,7 +13,7 @@ public:
     Keyword(const std::string &name);
 
     std::string inspect() const override;
-    const Data *call(const Context *) const override;
+    const Object *invoke(const Context *) const override;
 
     std::string name() const;
 };

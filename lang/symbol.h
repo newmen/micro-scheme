@@ -15,7 +15,7 @@ protected:
 public:
     virtual ~Symbol() {}
 
-    virtual const Data *call(const Context *) const = 0;
+    virtual const Object *invoke(const Context *) const = 0;
 };
 
 #endif // SYMBOL_H

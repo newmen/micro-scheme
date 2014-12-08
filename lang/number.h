@@ -10,7 +10,7 @@ class Number : public Constant<double>, public Symbol
 public:
     Number(double value);
 
-    const Data *call(const Context *) const override;
+    const Object *invoke(const Context *) const override;
 
     double getNumber() const override;
 };

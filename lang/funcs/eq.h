@@ -1,18 +1,21 @@
 #ifndef EQ_H
 #define EQ_H
 
-#include "../function.h"
+#include "../fixed_arity_function.h"
+#include "../default.h"
 #include "../boolean.h"
 
-class Eq : public FixedArityFunction
+class Eq : public Default<FixedArityFunction>
 {
 public:
-    Eq() : FixedArityFunction(2) {}
+    Eq() : Default(2) {}
 
-    const Data *call(const Arguments &args) const
+    const Object *call(const Arguments &args) const
     {
+        const Data *first = getData(args.front());
+        const Data *second = getData(args.back());
         // TODO: not optimized comparison
-        return new Boolean(args.front()->value() == args.back()->value());
+        return new Boolean(first->value() == second->value());
     }
 };
 

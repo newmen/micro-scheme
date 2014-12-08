@@ -2,18 +2,19 @@
 #define PLUS_H
 
 #include "../function.h"
+#include "../default.h"
 #include "../number.h"
 
-struct Plus : public Function
+struct Plus : public Default<Function>
 {
     Plus() = default;
 
-    const Data *call(const Arguments &args) const
+    const Object *call(const Arguments &args) const
     {
         double sum = 0;
-        for (const Data *x : args)
+        for (const Object *object : args)
         {
-            sum += x->getNumber();
+            sum += getData(object)->getNumber();
         }
 
         return new Number(sum);

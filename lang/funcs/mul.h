@@ -2,18 +2,19 @@
 #define MUL_H
 
 #include "../function.h"
+#include "../default.h"
 #include "../number.h"
 
-struct Mul : public Function
+struct Mul : public Default<Function>
 {
     Mul() = default;
 
-    const Data *call(const Arguments &args) const
+    const Object *call(const Arguments &args) const
     {
         double prod = 1;
-        for (const Data *x : args)
+        for (const Object *object : args)
         {
-            prod *= x->getNumber();
+            prod *= getData(object)->getNumber();
         }
 
         return new Number(prod);

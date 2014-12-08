@@ -1,33 +1,45 @@
 #include "sequence.h"
 #include <sstream>
-#include "arguments.h"
 #include "context.h"
-#include "utils.h"
+#include "keyword.h"
 
-Sequence::Sequence(const Keyword *name, const Symbols &args) : _head(name), _symbols(args)
+Sequence::Sequence(const Arguments &args) : _symbols(args)
 {
 }
 
 std::string Sequence::inspect() const
 {
     std::stringstream ss;
-    ss << "(" << _head->inspect();
-    for (const Symbol *s : _symbols)
+    bool isFirst = true;
+    ss << "(";
+    for (const Object *s : _symbols)
     {
-        ss << " " << s->inspect();
+        if (isFirst)
+        {
+            isFirst = false;
+        }
+        else
+        {
+            ss << " ";
+        }
+        ss << s->inspect();
     }
     ss << ")";
 
     return ss.str() + Object::inspect();
 }
 
-const Data *Sequence::call(const Context *context) const
+const Object *Sequence::invoke(const Context *context) const
 {
-    Arguments args;
-    for (const Symbol *s : _symbols)
+    Arguments args(_symbols);
+    const Object *first = args.front();
+    args.pop_front();
+
+    const Keyword *key = dynamic_cast<const Keyword *>(first);
+    if (!key)
     {
-        args.push_back(s->call(context));
+        throw Error("First item of sequence doesn't a keyword");
     }
 
-    return context->get(_head->name())->call(args);
+    return context->get(key->name())->call(args);
 }

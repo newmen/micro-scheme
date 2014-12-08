@@ -3,19 +3,18 @@
 
 #include <list>
 #include "symbol.h"
-#include "keyword.h"
-#include "symbols.h"
+#include "arguments.h"
+#include "error.h"
 
 class Sequence : public Symbol
 {
-    const Keyword *_head;
-    const Symbols _symbols;
+    const Arguments _symbols;
 
 public:
-    Sequence(const Keyword *name, const Symbols &args);
+    Sequence(const Arguments &args);
 
     std::string inspect() const override;
-    const Data *call(const Context *context) const override;
+    const Object *invoke(const Context *context) const override;
 };
 
 #endif // SEQUENCE_H

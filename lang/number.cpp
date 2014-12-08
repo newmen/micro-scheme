@@ -5,7 +5,7 @@ Number::Number(double value) : Constant(value)
 {
 }
 
-const Data *Number::call(const Context *) const
+const Object *Number::invoke(const Context *) const
 {
     return this;
 }
