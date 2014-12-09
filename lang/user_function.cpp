@@ -21,7 +21,15 @@ const Object *UserFunction::safeCall(const Context *context, const Objects &args
         const Function *function = dynamic_cast<const Function *>(*ia);
         if (!function)
         {
-            function = new UserFunction(*ia);
+            const Symbol *symbol = dynamic_cast<const Symbol *>(*ia);
+            if (symbol)
+            {
+                function = new UserFunction(symbol->invoke(subContext));
+            }
+            else
+            {
+                function = new UserFunction(*ia);
+            }
         }
 
         subContext->assign((*ik)->name(), function);
@@ -36,8 +44,13 @@ const Object *UserFunction::safeCall(const Context *context, const Objects &args
     else
     {
         const Symbol *symbol = dynamic_cast<const Symbol *>(_body);
-        assert(symbol);
-
-        return symbol->invoke(subContext);
+        if (symbol)
+        {
+            return symbol->invoke(subContext);
+        }
+        else
+        {
+            return _body;
+        }
     }
 }

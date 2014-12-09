@@ -9,8 +9,10 @@ const Object *If::safeCall(const Context *context, const Objects &args) const
 {
     Objects::const_iterator it = args.begin();
     const Data *condition = Utils::getData(context, *it);
-    const Data *truthy = Utils::getData(context, *(++it));
-    const Data *falsey = Utils::getData(context, *(++it));
+    const Object *truthy = *(++it);
+    const Object *falsey = *(++it);
 
-    return condition->getBoolean() ? truthy : falsey;
+    return condition->getBoolean()
+            ? Utils::getData(context, truthy)
+            : Utils::getData(context, falsey);
 }
