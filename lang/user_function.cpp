@@ -1,19 +1,24 @@
 #include "user_function.h"
-#include <assert.h>
 
 UserFunction::UserFunction(const Object *body) :
     UserFunction(Keywords(), body)
 {
 }
 
-UserFunction::UserFunction(const Keywords &args, const Object *body) :
-    FixedArityFunction(args.size()), _args(args), _body(body)
+UserFunction::UserFunction(const Keywords &args, const Object *body, const Objects &intermedBodies) :
+    FixedArityFunction(args.size()), _args(args), _intermedBodies(intermedBodies), _body(body)
 {
 }
 
 const Object *UserFunction::safeCall(const Context *context, const Objects &args) const
 {
     Context *subContext = new Context(context);
+    for (const Object *object : _intermedBodies)
+    {
+        const Symbol *symbol = dynamic_cast<const Symbol *>(object);
+        symbol->invoke(subContext);
+    }
+
     Keywords::const_iterator ik = _args.begin();
     Objects::const_iterator ia = args.begin();
     for (; ik != _args.end(); ik++, ia++)

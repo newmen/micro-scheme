@@ -2,7 +2,11 @@
 #include "../number.h"
 #include "../utils.h"
 
-const Object *Plus::call(const Context *context, const Objects &args) const
+Plus::Plus() : FloatArityFunction(2)
+{
+}
+
+const Object *Plus::safeCall(const Context *context, const Objects &args) const
 {
     double sum = 0;
     for (const Object *object : args)

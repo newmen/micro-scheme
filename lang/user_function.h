@@ -7,11 +7,12 @@
 class UserFunction : public FixedArityFunction
 {
     const Keywords _args;
+    const Objects _intermedBodies;
     const Object *_body;
 
     UserFunction(const Object *body);
 public:
-    UserFunction(const Keywords &args, const Object *body);
+    UserFunction(const Keywords &args, const Object *body, const Objects &intermedBodies = Objects());
 
 private:
     const Object *safeCall(const Context * context, const Objects &args) const;

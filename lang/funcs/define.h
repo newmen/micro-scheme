@@ -1,10 +1,10 @@
 #ifndef DEFINE_H
 #define DEFINE_H
 
-#include <assert.h>
-#include "../meta_function.h"
+#include "../float_arity_function.h"
+#include "../meta.h"
 
-struct Define : public MetaFunction
+struct Define : public Meta<FloatArityFunction>
 {
     Define();
 

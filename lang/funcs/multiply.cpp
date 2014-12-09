@@ -2,7 +2,11 @@
 #include "../number.h"
 #include "../utils.h"
 
-const Object *Multiply::call(const Context *context, const Objects &args) const
+Multiply::Multiply() : FloatArityFunction(2)
+{
+}
+
+const Object *Multiply::safeCall(const Context *context, const Objects &args) const
 {
     double prod = 1;
     for (const Object *object : args)

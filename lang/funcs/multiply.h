@@ -1,13 +1,14 @@
 #ifndef MULTIPLY_H
 #define MULTIPLY_H
 
-#include "../function.h"
+#include "../float_arity_function.h"
 
-struct Multiply : public Function
+struct Multiply : public FloatArityFunction
 {
-    Multiply() = default;
+    Multiply();
 
-    const Object *call(const Context *context, const Objects &args) const override;
+protected:
+    const Object *safeCall(const Context *context, const Objects &args) const override;
 };
 
 #endif // MULTIPLY_H

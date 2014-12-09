@@ -1,13 +1,14 @@
 #ifndef PLUS_H
 #define PLUS_H
 
-#include "../function.h"
+#include "../float_arity_function.h"
 
-struct Plus : public Function
+struct Plus : public FloatArityFunction
 {
-    Plus() = default;
+    Plus();
 
-    const Object *call(const Context *context, const Objects &args) const override;
+protected:
+    const Object *safeCall(const Context *context, const Objects &args) const override;
 };
 
 #endif // PLUS_H
