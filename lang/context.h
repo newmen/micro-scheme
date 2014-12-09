@@ -23,7 +23,7 @@ class Context : virtual public Object
     struct UndefinedError : public Error
     {
         UndefinedError(const std::string &name) :
-            Error(std::string("Undefined ") + name + " symbol") {}
+            Error(std::string("Undefined \"") + name + "\" symbol") {}
     };
 
 public:

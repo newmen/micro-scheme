@@ -7,16 +7,17 @@
 
 int main()
 {
-    Parser parser(std::cin);
+    std::istream &input = std::cin;
+    Parser parser(input);
 
-    try
+    // REPL
+    while (true)
     {
-        // REPL
-        while (true)
-        {
-            const Symbol *symbol = nullptr;
-            std::cout << ">> ";
+        const Symbol *symbol = nullptr;
+        std::cout << ">> ";
 
+        try
+        {
             symbol = parser.read();
             if (symbol)
             {
@@ -30,6 +31,8 @@ int main()
                 {
                     std::cout << object->inspect() << std::endl;
                 }
+
+                delete symbol;
             }
             else
             {
@@ -37,12 +40,11 @@ int main()
                 break;
             }
         }
-    }
-    catch (Error e)
-    {
-        std::cerr << e.message() << std::endl;
-        Scavenger::destroy();
-        return 1;
+        catch (Error e)
+        {
+            std::cerr << e.message() << std::endl;
+            input.ignore();
+        }
     }
 
     Scavenger::destroy();

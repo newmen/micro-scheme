@@ -59,11 +59,7 @@ const Keyword *Parser::readKeyword()
         }
         else if (bos(c))
         {
-            if (word.empty())
-            {
-                throw ParseError("Expected word, but sequence begin was readed");
-            }
-            else
+            if (!word.empty())
             {
                 throw SymbolError("Wrong using open braket as partition of ", word);
             }
@@ -72,6 +68,11 @@ const Keyword *Parser::readKeyword()
         {
             word.push_back(c);
         }
+    }
+
+    if (word.empty())
+    {
+        throw SymbolError("Unexpected symbol instead keyword", c);
     }
 
     return new Keyword(word);
