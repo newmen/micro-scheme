@@ -13,13 +13,14 @@ class Meta : public F
 protected:
     Meta(unsigned arity);
 
-    Keywords toKeywords(const Objects &objects) const;
-
 public:
-    const Object *call(const Context *context, const Objects &args) const override;
+    const Data *call(const Context *context, const Arguments &args) const override;
+
+protected:
+    Keywords toKeywords(const Arguments &symbols) const;
 
 private:
-    void checkSequence(const Object *object) const;
+    void checkSequence(const Symbol *symbol) const;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -30,10 +31,19 @@ Meta<F>::Meta(unsigned arity) : F(arity)
 }
 
 template <class F>
-Keywords Meta<F>::toKeywords(const Objects &objects) const
+const Data *Meta<F>::call(const Context *context, const Arguments &args) const
+{
+    this->checkArity(args);
+    this->checkSequence(args.front());
+
+    return this->safeCall(context, args);
+}
+
+template <class F>
+Keywords Meta<F>::toKeywords(const Arguments &symbols) const
 {
     Keywords result;
-    for (const Object *symbol : objects)
+    for (const Object *symbol : symbols)
     {
         const Keyword *keyword = dynamic_cast<const Keyword *>(symbol);
         result.push_back(keyword);
@@ -43,18 +53,9 @@ Keywords Meta<F>::toKeywords(const Objects &objects) const
 }
 
 template <class F>
-const Object *Meta<F>::call(const Context *context, const Objects &args) const
+void Meta<F>::checkSequence(const Symbol *symbol) const
 {
-    this->checkArity(args);
-    this->checkSequence(args.front());
-
-    return this->safeCall(context, args);
-}
-
-template <class F>
-void Meta<F>::checkSequence(const Object *object) const
-{
-    const Sequence *sequence = dynamic_cast<const Sequence *>(object);
+    const Sequence *sequence = dynamic_cast<const Sequence *>(symbol);
     if (!sequence)
     {
         throw Error("The first argument of define should be a sequence");

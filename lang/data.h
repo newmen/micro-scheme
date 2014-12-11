@@ -1,13 +1,11 @@
 #ifndef DATA_H
 #define DATA_H
 
-#include "object.h"
+#include "symbol.h"
 #include "error.h"
 
-class Function;
-
 // interface
-class Data : virtual public Object
+class Data : public Symbol
 {
     struct TypeError : public Error
     {
@@ -19,9 +17,8 @@ protected:
     Data() = default;
 
 public:
-    virtual ~Data() {}
-
     std::string inspect() const override;
+    const Data *invoke(const Context *) const override;
 
     virtual std::string value() const = 0;
     virtual bool getBoolean() const;

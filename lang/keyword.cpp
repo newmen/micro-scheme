@@ -10,7 +10,7 @@ std::string Keyword::inspect() const
     return _name + Object::inspect();
 }
 
-const Object *Keyword::invoke(const Context *context) const
+const Data *Keyword::invoke(const Context *context) const
 {
     return context->get(_name)->call(context);
 }

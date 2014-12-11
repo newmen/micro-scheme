@@ -8,7 +8,7 @@ struct If : public FixedArityFunction
     If();
 
 protected:
-    const Object *safeCall(const Context *context, const Objects &args) const override;
+    const Data *safeCall(const Context *context, const Arguments &args) const override;
 };
 
 #endif // IF_H

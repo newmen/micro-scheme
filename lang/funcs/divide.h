@@ -8,7 +8,7 @@ struct Divide : public FixedArityFunction
     Divide();
 
 protected:
-    const Object *safeCall(const Context *context, const Objects &args) const override;
+    const Data *safeCall(const Context *context, const Arguments &args) const override;
 };
 
 #endif // DIVIDE_H

@@ -6,12 +6,12 @@ Multiply::Multiply() : FloatArityFunction(2)
 {
 }
 
-const Object *Multiply::safeCall(const Context *context, const Objects &args) const
+const Data *Multiply::safeCall(const Context *context, const Arguments &args) const
 {
     double prod = 1;
-    for (const Object *object : args)
+    for (const Symbol *symbol : args)
     {
-        prod *= Utils::getData(context, object)->getNumber();
+        prod *= symbol->invoke(context)->getNumber();
     }
 
     return new Number(prod);

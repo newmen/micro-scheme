@@ -2,20 +2,18 @@
 #define SYMBOL_H
 
 #include "object.h"
-#include "data.h"
 
 class Context;
+class Data;
 
 // interface
-class Symbol : virtual public Object
+class Symbol : public Object
 {
 protected:
     Symbol() = default;
 
 public:
-    virtual ~Symbol() {}
-
-    virtual const Object *invoke(const Context *) const = 0;
+    virtual const Data *invoke(const Context *context) const = 0;
 };
 
 #endif // SYMBOL_H

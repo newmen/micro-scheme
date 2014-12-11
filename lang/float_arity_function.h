@@ -16,7 +16,7 @@ class FloatArityFunction : public FixedArityFunction
 protected:
     FloatArityFunction(unsigned minArity);
 
-    void checkArity(const Objects &args) const override;
+    void checkArity(const Arguments &args) const override;
 };
 
 #endif // FLOAT_ARITY_FUNCTION_H

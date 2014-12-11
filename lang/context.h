@@ -7,7 +7,7 @@
 #include "error.h"
 #include "function.h"
 
-class Context : virtual public Object
+class Context : public Object
 {
     typedef std::unordered_map<std::string, const Function *> Table;
 
@@ -28,7 +28,6 @@ class Context : virtual public Object
 
 public:
     Context(const Context *parent = nullptr);
-    virtual ~Context() {}
 
     std::string inspect() const override;
 

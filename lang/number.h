@@ -2,15 +2,12 @@
 #define NUMBER_H
 
 #include "constant.h"
-#include "symbol.h"
 #include "context.h"
 
-class Number : public Constant<double>, public Symbol
+class Number : public Constant<double>
 {
 public:
     Number(double value);
-
-    const Object *invoke(const Context *) const override;
 
     double getNumber() const override;
 };

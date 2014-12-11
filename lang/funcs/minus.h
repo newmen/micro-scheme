@@ -8,7 +8,7 @@ struct Minus : public FixedArityFunction
     Minus();
 
 protected:
-    const Object *safeCall(const Context *context, const Objects &args) const override;
+    const Data *safeCall(const Context *context, const Arguments &args) const override;
 };
 
 #endif // MINUS_H

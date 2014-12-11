@@ -2,26 +2,25 @@
 #define FUNCTION_H
 
 #include <string>
-#include "object.h"
-#include "objects.h"
+#include "data.h"
+#include "arguments.h"
 #include "error.h"
 #include "utils.h"
 
 class Context;
 
 // interface
-class Function : virtual public Object
+class Function : public Data
 {
 protected:
     Function() = default;
 
 public:
-    virtual ~Function() {}
-
     std::string inspect() const override;
+    std::string value() const override;
 
-    const Object *call(const Context *context) const;
-    virtual const Object *call(const Context *context, const Objects &args) const = 0;
+    const Data *call(const Context *context) const;
+    virtual const Data *call(const Context *context, const Arguments &args) const = 0;
 };
 
 #endif // FUNCTION_H

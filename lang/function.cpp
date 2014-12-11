@@ -5,7 +5,12 @@ std::string Function::inspect() const
     return std::string("Function") + Object::inspect();
 }
 
-const Object *Function::call(const Context *context) const
+std::string Function::value() const
 {
-    return call(context, Objects());
+    return "ok";
+}
+
+const Data *Function::call(const Context *context) const
+{
+    return call(context, Arguments());
 }

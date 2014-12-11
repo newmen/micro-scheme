@@ -8,22 +8,22 @@ Define::Define() : Meta(2)
 {
 }
 
-const Object *Define::safeCall(const Context *context, const Objects &args) const
+const Data *Define::safeCall(const Context *context, const Arguments &args) const
 {
-    Objects chunks(args);
+    Arguments chunks(args);
     const Sequence *signature = dynamic_cast<const Sequence *>(chunks.front());
     chunks.pop_front();
 
     const Keyword *funcName = dynamic_cast<const Keyword *>(signature->head());
     Keywords funcArgs = toKeywords(signature->tail());
 
-    const Object *last = chunks.back();
+    const Symbol *last = chunks.back();
     chunks.pop_back();
 
     unsigned i = 1;
-    for (const Object *object : chunks)
+    for (const Symbol *symbol : chunks)
     {
-        const Sequence *sequence = dynamic_cast<const Sequence *>(object);
+        const Sequence *sequence = dynamic_cast<const Sequence *>(symbol);
         if (sequence)
         {
             ++i;
@@ -31,7 +31,7 @@ const Object *Define::safeCall(const Context *context, const Objects &args) cons
         else
         {
             std::stringstream ss;
-            ss << "The argument of define body ("
+            ss << "One of define function body argument ("
                << i << " of " << (args.size() - 1)
                << ") is not a sequence";
             throw Error(ss.str());

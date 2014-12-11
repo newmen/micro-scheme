@@ -5,14 +5,14 @@ If::If() : FixedArityFunction(3)
 {
 }
 
-const Object *If::safeCall(const Context *context, const Objects &args) const
+const Data *If::safeCall(const Context *context, const Arguments &args) const
 {
-    Objects::const_iterator it = args.begin();
-    const Data *condition = Utils::getData(context, *it);
-    const Object *truthy = *(++it);
-    const Object *falsey = *(++it);
+    Arguments::const_iterator it = args.begin();
+    const Data *condition = (*it)->invoke(context);
+    const Symbol *truthy = *(++it);
+    const Symbol *falsey = *(++it);
 
     return condition->getBoolean()
-            ? Utils::getData(context, truthy)
-            : Utils::getData(context, falsey);
+            ? truthy->invoke(context)
+            : falsey->invoke(context);
 }

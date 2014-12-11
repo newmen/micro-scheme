@@ -6,10 +6,10 @@ Eq::Eq() : FixedArityFunction(2)
 {
 }
 
-const Object *Eq::safeCall(const Context *context, const Objects &args) const
+const Data *Eq::safeCall(const Context *context, const Arguments &args) const
 {
-    const Data *first = Utils::getData(context, args.front());
-    const Data *second = Utils::getData(context, args.back());
-    // TODO: not optimized comparison
+    const Data *first = args.front()->invoke(context);
+    const Data *second = args.back()->invoke(context);
+    // TODO: not optimized comparison (and bad for functions)
     return new Boolean(first->value() == second->value());
 }

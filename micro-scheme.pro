@@ -51,11 +51,11 @@ HEADERS += \
     lang/object.h \
     lang/fixed_arity_function.h \
     lang/funcs/define.h \
-    lang/objects.h \
     lang/keywords.h \
     lang/user_function.h \
     lang/funcs/divide.h \
     lang/funcs/multiply.h \
     lang/float_arity_function.h \
-    lang/meta.h
+    lang/meta.h \
+    lang/arguments.h
 

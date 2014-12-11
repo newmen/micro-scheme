@@ -4,7 +4,7 @@
 #include "keyword.h"
 #include "error.h"
 
-Sequence::Sequence(const Objects &args) : _symbols(args)
+Sequence::Sequence(const Arguments &args) : _symbols(args)
 {
 }
 
@@ -21,7 +21,7 @@ std::string Sequence::inspect() const
     return ss.str() + Object::inspect();
 }
 
-const Object *Sequence::invoke(const Context *context) const
+const Data *Sequence::invoke(const Context *context) const
 {
     const Keyword *key = dynamic_cast<const Keyword *>(head());
     if (!key)
@@ -32,7 +32,7 @@ const Object *Sequence::invoke(const Context *context) const
     return context->get(key->name())->call(context, tail());
 }
 
-const Objects &Sequence::symbols() const
+const Arguments &Sequence::symbols() const
 {
     return _symbols;
 }
@@ -42,9 +42,9 @@ const Object *Sequence::head() const
     return _symbols.front();
 }
 
-Objects Sequence::tail() const
+Arguments Sequence::tail() const
 {
-    Objects result(_symbols);
+    Arguments result(_symbols);
     result.pop_front();
     return result;
 }

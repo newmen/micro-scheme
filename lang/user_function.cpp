@@ -1,40 +1,32 @@
 #include "user_function.h"
 
-UserFunction::UserFunction(const Object *body) :
+UserFunction::UserFunction(const Symbol *body) :
     UserFunction(Keywords(), body)
 {
 }
 
-UserFunction::UserFunction(const Keywords &args, const Object *body, const Objects &intermedBodies) :
+UserFunction::UserFunction(const Keywords &args, const Symbol *body, const Arguments &intermedBodies) :
     FixedArityFunction(args.size()), _args(args), _intermedBodies(intermedBodies), _body(body)
 {
 }
 
-const Object *UserFunction::safeCall(const Context *context, const Objects &args) const
+const Data *UserFunction::safeCall(const Context *context, const Arguments &args) const
 {
     Context *subContext = new Context(context);
-    for (const Object *object : _intermedBodies)
+    for (const Symbol *symbol : _intermedBodies)
     {
-        const Symbol *symbol = dynamic_cast<const Symbol *>(object);
         symbol->invoke(subContext);
     }
 
     Keywords::const_iterator ik = _args.begin();
-    Objects::const_iterator ia = args.begin();
+    Arguments::const_iterator ia = args.begin();
     for (; ik != _args.end(); ik++, ia++)
     {
-        const Function *function = dynamic_cast<const Function *>(*ia);
+        const Data *data = (*ia)->invoke(subContext);
+        const Function *function = dynamic_cast<const Function *>(data);
         if (!function)
         {
-            const Symbol *symbol = dynamic_cast<const Symbol *>(*ia);
-            if (symbol)
-            {
-                function = new UserFunction(symbol->invoke(subContext));
-            }
-            else
-            {
-                function = new UserFunction(*ia);
-            }
+            function = new UserFunction(data);
         }
 
         subContext->assign((*ik)->name(), function);
@@ -48,14 +40,6 @@ const Object *UserFunction::safeCall(const Context *context, const Objects &args
     }
     else
     {
-        const Symbol *symbol = dynamic_cast<const Symbol *>(_body);
-        if (symbol)
-        {
-            return symbol->invoke(subContext);
-        }
-        else
-        {
-            return _body;
-        }
+        return _body->invoke(subContext);
     }
 }

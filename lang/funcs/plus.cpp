@@ -6,12 +6,12 @@ Plus::Plus() : FloatArityFunction(2)
 {
 }
 
-const Object *Plus::safeCall(const Context *context, const Objects &args) const
+const Data *Plus::safeCall(const Context *context, const Arguments &args) const
 {
     double sum = 0;
-    for (const Object *object : args)
+    for (const Symbol *symbol : args)
     {
-        sum += Utils::getData(context, object)->getNumber();
+        sum += symbol->invoke(context)->getNumber();
     }
 
     return new Number(sum);

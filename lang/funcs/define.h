@@ -9,7 +9,7 @@ struct Define : public Meta<FloatArityFunction>
     Define();
 
 protected:
-    const Object *safeCall(const Context *context, const Objects &args) const override;
+    const Data *safeCall(const Context *context, const Arguments &args) const override;
 };
 
 #endif // DEFINE_H

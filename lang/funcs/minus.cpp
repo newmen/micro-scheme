@@ -6,9 +6,9 @@ Minus::Minus() : FixedArityFunction(2)
 {
 }
 
-const Object *Minus::safeCall(const Context *context, const Objects &args) const
+const Data *Minus::safeCall(const Context *context, const Arguments &args) const
 {
-    const Data *first = Utils::getData(context, args.front());
-    const Data *second = Utils::getData(context, args.back());
+    const Data *first = args.front()->invoke(context);
+    const Data *second = args.back()->invoke(context);
     return new Number(first->getNumber() - second->getNumber());
 }

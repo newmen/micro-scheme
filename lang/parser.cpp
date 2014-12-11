@@ -108,7 +108,7 @@ const Number *Parser::readNumber()
 
 const Sequence *Parser::readSequence()
 {
-    Objects symbols;
+    Arguments symbols;
 
     char c;
     while (true)

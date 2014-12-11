@@ -4,7 +4,7 @@ FloatArityFunction::FloatArityFunction(unsigned minArity) : FixedArityFunction(m
 {
 }
 
-void FloatArityFunction::checkArity(const Objects &args) const
+void FloatArityFunction::checkArity(const Arguments &args) const
 {
     unsigned argsNum = args.size();
     if (_arity > argsNum)

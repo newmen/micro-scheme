@@ -20,11 +20,11 @@ private:
 protected:
     FixedArityFunction(unsigned arity);
 
-    virtual void checkArity(const Objects &args) const;
-    virtual const Object *safeCall(const Context *context, const Objects &args) const = 0;
+    virtual void checkArity(const Arguments &args) const;
+    virtual const Data *safeCall(const Context *context, const Arguments &args) const = 0;
 
 public:
-    const Object *call(const Context *context, const Objects &args) const override;
+    const Data *call(const Context *context, const Arguments &args) const override;
 };
 
 #endif // FIXED_ARITY_FUNCTION_H

@@ -3,21 +3,21 @@
 
 #include <list>
 #include "symbol.h"
-#include "objects.h"
+#include "arguments.h"
 
 class Sequence : public Symbol
 {
-    const Objects _symbols;
+    const Arguments _symbols;
 
 public:
-    Sequence(const Objects &args);
+    Sequence(const Arguments &args);
 
     std::string inspect() const override;
-    const Object *invoke(const Context *context) const override;
+    const Data *invoke(const Context *context) const override;
 
-    const Objects &symbols() const;
+    const Arguments &symbols() const;
     const Object *head() const;
-    Objects tail() const;
+    Arguments tail() const;
 };
 
 #endif // SEQUENCE_H
