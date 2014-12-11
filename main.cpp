@@ -24,6 +24,10 @@ int main()
                 const Data *data = symbol->invoke(GlobalContext::instance());
                 std::cout << data->value() << std::endl;
 
+                if (data != symbol)
+                {
+                    delete data;
+                }
                 delete symbol;
             }
             else

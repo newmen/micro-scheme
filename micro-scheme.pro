@@ -27,7 +27,8 @@ SOURCES += main.cpp \
     lang/funcs/eq.cpp \
     lang/funcs/define.cpp \
     lang/utils.cpp \
-    lang/float_arity_function.cpp
+    lang/float_arity_function.cpp \
+    lang/ok.cpp
 
 HEADERS += \
     lang/sequence.h \
@@ -57,5 +58,6 @@ HEADERS += \
     lang/funcs/multiply.h \
     lang/float_arity_function.h \
     lang/meta.h \
-    lang/arguments.h
+    lang/arguments.h \
+    lang/ok.h
 

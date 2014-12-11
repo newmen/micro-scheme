@@ -7,7 +7,7 @@ std::string Function::inspect() const
 
 std::string Function::value() const
 {
-    return "ok";
+    return "function";
 }
 
 const Data *Function::call(const Context *context) const

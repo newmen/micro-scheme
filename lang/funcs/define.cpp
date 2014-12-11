@@ -3,6 +3,7 @@
 #include "../sequence.h"
 #include "../keyword.h"
 #include "../user_function.h"
+#include "../ok.h"
 
 Define::Define() : Meta(2)
 {
@@ -42,5 +43,5 @@ const Data *Define::safeCall(const Context *context, const Arguments &args) cons
     Context *changingContext = const_cast<Context *>(context);
     changingContext->assign(funcName->name(), function);
 
-    return function;
+    return new Ok();
 }
