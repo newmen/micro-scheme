@@ -5,9 +5,6 @@ CONFIG -= qt
 
 QMAKE_CXXFLAGS += -std=c++11
 
-include(deployment.pri)
-qtcAddDeployment()
-
 SOURCES += main.cpp \
     lang/sequence.cpp \
     lang/parser.cpp \
