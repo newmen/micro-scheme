@@ -21,6 +21,8 @@ public:
     const Data *invoke(const Context *) const override;
 
     virtual std::string value() const = 0;
+    virtual bool eql(const Data *other) const = 0;
+
     virtual bool getBoolean() const;
     virtual double getNumber() const;
 };

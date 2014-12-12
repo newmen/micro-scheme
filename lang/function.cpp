@@ -10,6 +10,11 @@ std::string Function::value() const
     return "function";
 }
 
+bool Function::eql(const Data *other) const
+{
+    return this == other;
+}
+
 const Data *Function::call(const Context *context) const
 {
     return call(context, Arguments());

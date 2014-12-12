@@ -3,12 +3,12 @@
 
 #include "data.h"
 
-class Ok : public Data
+struct Ok : public Data
 {
-public:
     Ok() = default;
 
     std::string value() const override;
+    bool eql(const Data *) const override;
 };
 
 #endif // OK_H

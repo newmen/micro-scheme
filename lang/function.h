@@ -18,6 +18,7 @@ protected:
 public:
     std::string inspect() const override;
     std::string value() const override;
+    bool eql(const Data *other) const override;
 
     const Data *call(const Context *context) const;
     virtual const Data *call(const Context *context, const Arguments &args) const = 0;
