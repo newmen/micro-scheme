@@ -16,7 +16,7 @@ public:
     const Data *invoke(const Context *context) const override;
 
     const Arguments &symbols() const;
-    const Object *head() const;
+    const Symbol *head() const;
     Arguments tail() const;
 };
 

@@ -32,7 +32,7 @@ const Data *Define::safeCall(const Context *context, const Arguments &args) cons
         else
         {
             std::stringstream ss;
-            ss << "One of define function body argument ("
+            ss << "One of intermediate define function body argument ("
                << i << " of " << (args.size() - 1)
                << ") is not a sequence";
             throw Error(ss.str());

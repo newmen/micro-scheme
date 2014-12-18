@@ -37,7 +37,7 @@ const Arguments &Sequence::symbols() const
     return _symbols;
 }
 
-const Object *Sequence::head() const
+const Symbol *Sequence::head() const
 {
     return _symbols.front();
 }
