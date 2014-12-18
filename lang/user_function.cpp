@@ -32,14 +32,14 @@ const Data *UserFunction::safeCall(const Context *context, const Arguments &args
         subContext->assign((*ik)->name(), function);
     }
 
-    const Function *body = dynamic_cast<const Function *>(_body);
-    if (body)
+    const Data *bodyData = _body->invoke(subContext);
+    const Function *bodyFunction = dynamic_cast<const Function *>(bodyData);
+    if (bodyFunction)
     {
-        // TODO: the body function must be partialy applied
-        return nullptr;
+        return bodyFunction->call(subContext);
     }
     else
     {
-        return _body->invoke(subContext);
+        return bodyData;
     }
 }

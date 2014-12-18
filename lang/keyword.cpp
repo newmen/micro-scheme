@@ -12,7 +12,7 @@ std::string Keyword::inspect() const
 
 const Data *Keyword::invoke(const Context *context) const
 {
-    return context->get(_name)->call(context);
+    return context->get(_name);
 }
 
 std::string Keyword::name() const
