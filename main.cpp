@@ -1,9 +1,9 @@
 #include <iostream>
-#include "error.h"
 #include "lang/scavenger.h"
 #include "lang/global_context.h"
 #include "lang/symbol.h"
 #include "lang/parser.h"
+#include "lang/error.h"
 
 int main()
 {
