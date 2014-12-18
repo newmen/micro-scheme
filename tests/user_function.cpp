@@ -17,10 +17,10 @@ TEST(UserFunctionTest, SubFunction) {
 }
 
 TEST(UserFunctionTest, FunctionAsArgument) {
-    std::string f = "(define (f x) (+ x x 50))";
-    std::string g = "(define (g h x) (h x))";
-    EXPECT_STREQ("54", MicroScheme(f).next(g).next("(g f 2)").result().c_str());
-    EXPECT_STREQ("64", MicroScheme(f).next(g).next("(g f 7)").result().c_str());
+    std::string f = "(define (f x) (+ x x -5))";
+    std::string g = "(define (g f x) (f (* x x)))";
+    EXPECT_STREQ("3", MicroScheme(f).next(g).next("(g f 2)").result().c_str());
+    EXPECT_STREQ("93", MicroScheme(f).next(g).next("(g f 7)").result().c_str());
 }
 
 TEST(UserFunctionTest, Alias) {

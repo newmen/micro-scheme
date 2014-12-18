@@ -2,6 +2,7 @@
 *.pro.user
 *~
 
+micro-scheme-tests
 obj/
 *.d
 *.o
