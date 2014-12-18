@@ -22,3 +22,9 @@ TEST(UserFunctionTest, FunctionAsArgument) {
     EXPECT_STREQ("54", MicroScheme(f).next(g).next("(g f 2)").result().c_str());
     EXPECT_STREQ("64", MicroScheme(f).next(g).next("(g f 7)").result().c_str());
 }
+
+TEST(UserFunctionTest, Alias) {
+    std::string def = "(define (f) +)";
+    EXPECT_STREQ("7", MicroScheme(def).next("(f 2 5)").result().c_str());
+    EXPECT_STREQ("-6", MicroScheme(def).next("(f 3 -4 -5)").result().c_str());
+}

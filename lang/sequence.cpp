@@ -2,6 +2,7 @@
 #include <sstream>
 #include "context.h"
 #include "keyword.h"
+#include "function.h"
 #include "error.h"
 
 Sequence::Sequence(const Arguments &args) : _symbols(args)
@@ -23,13 +24,22 @@ std::string Sequence::inspect() const
 
 const Data *Sequence::invoke(const Context *context) const
 {
-    const Keyword *key = dynamic_cast<const Keyword *>(head());
-    if (!key)
+    const Data *key = head()->invoke(context);
+    const Sequence *sequence = dynamic_cast<const Sequence *>(key);
+    if (sequence)
     {
-        throw Error("First item of sequence is not a keyword");
+        key = sequence->invoke(context);
     }
 
-    return context->get(key->name())->call(context, tail());
+    const Function *function = dynamic_cast<const Function *>(key);
+    if (!function)
+    {
+        std::stringstream ss;
+        ss << key->value() << " is not a function";
+        throw Error(ss.str());
+    }
+
+    return function->call(context, tail());
 }
 
 const Arguments &Sequence::symbols() const
