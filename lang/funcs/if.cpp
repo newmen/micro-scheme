@@ -1,7 +1,7 @@
 #include "if.h"
 #include "../utils.h"
 
-If::If() : FixedArityFunction(3)
+If::If() : Function(3)
 {
 }
 

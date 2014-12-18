@@ -1,10 +1,10 @@
 #ifndef FLOAT_ARITY_FUNCTION_H
 #define FLOAT_ARITY_FUNCTION_H
 
-#include "fixed_arity_function.h"
+#include "function.h"
 
 // abstract
-class FloatArityFunction : public FixedArityFunction
+class FloatArityFunction : public Function
 {
     struct ArityError : public Error
     {

@@ -1,10 +1,10 @@
 #ifndef USER_FUNCTION_H
 #define USER_FUNCTION_H
 
-#include "fixed_arity_function.h"
+#include "function.h"
 #include "keywords.h"
 
-class UserFunction : public FixedArityFunction
+class UserFunction : public Function
 {
     const Keywords _args;
     const Arguments _intermedBodies;

@@ -1,9 +1,9 @@
 #ifndef MINUS_H
 #define MINUS_H
 
-#include "../fixed_arity_function.h"
+#include "../function.h"
 
-struct Minus : public FixedArityFunction
+struct Minus : public Function
 {
     Minus();
 

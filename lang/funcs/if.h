@@ -1,9 +1,9 @@
 #ifndef IF_H
 #define IF_H
 
-#include "../fixed_arity_function.h"
+#include "../function.h"
 
-struct If : public FixedArityFunction
+struct If : public Function
 {
     If();
 

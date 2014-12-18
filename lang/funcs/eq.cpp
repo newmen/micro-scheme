@@ -2,7 +2,7 @@
 #include "../boolean.h"
 #include "../utils.h"
 
-Eq::Eq() : FixedArityFunction(2)
+Eq::Eq() : Function(2)
 {
 }
 

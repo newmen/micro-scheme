@@ -2,7 +2,7 @@
 #include "../number.h"
 #include "../utils.h"
 
-Minus::Minus() : FixedArityFunction(2)
+Minus::Minus() : Function(2)
 {
 }
 

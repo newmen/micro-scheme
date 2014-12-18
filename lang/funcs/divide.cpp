@@ -2,7 +2,7 @@
 #include "../number.h"
 #include "../utils.h"
 
-Divide::Divide() : FixedArityFunction(2)
+Divide::Divide() : Function(2)
 {
 }
 

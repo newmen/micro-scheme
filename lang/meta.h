@@ -1,7 +1,6 @@
 #ifndef META_H
 #define META_H
 
-#include "fixed_arity_function.h"
 #include "sequence.h"
 #include "keyword.h"
 #include "keywords.h"

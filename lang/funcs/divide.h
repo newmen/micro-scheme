@@ -1,9 +1,9 @@
 #ifndef DIVIDE_H
 #define DIVIDE_H
 
-#include "../fixed_arity_function.h"
+#include "../function.h"
 
-struct Divide : public FixedArityFunction
+struct Divide : public Function
 {
     Divide();
 

@@ -1,9 +1,9 @@
 #ifndef EQ_H
 #define EQ_H
 
-#include "../fixed_arity_function.h"
+#include "../function.h"
 
-struct Eq : public FixedArityFunction
+struct Eq : public Function
 {
     Eq();
 

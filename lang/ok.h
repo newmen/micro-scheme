@@ -3,9 +3,14 @@
 
 #include "data.h"
 
-struct Ok : public Data
+class Ok : public Data
 {
+    static Ok *__instance;
+
     Ok() = default;
+
+public:
+    static Ok *instance();
 
     std::string value() const override;
     bool eql(const Data *) const override;

@@ -43,5 +43,5 @@ const Data *Define::safeCall(const Context *context, const Arguments &args) cons
     Context *changingContext = const_cast<Context *>(context);
     changingContext->assign(funcName->name(), function);
 
-    return new Ok();
+    return Ok::instance();
 }

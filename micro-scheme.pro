@@ -17,7 +17,6 @@ SOURCES += main.cpp \
     lang/function.cpp \
     lang/keyword.cpp \
     lang/object.cpp \
-    lang/fixed_arity_function.cpp \
     lang/user_function.cpp \
     lang/funcs/plus.cpp \
     lang/funcs/minus.cpp \
@@ -50,7 +49,6 @@ HEADERS += \
     lang/keyword.h \
     lang/symbol.h \
     lang/object.h \
-    lang/fixed_arity_function.h \
     lang/funcs/define.h \
     lang/keywords.h \
     lang/user_function.h \
