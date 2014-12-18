@@ -1,19 +1,18 @@
 #ifndef GLOBAL_CONTEXT_H
 #define GLOBAL_CONTEXT_H
 
+#include "tools/singleton.h"
 #include "context.h"
 
-class GlobalContext : public Context
+class GlobalContext : public Singleton<GlobalContext, Context>
 {
-    static GlobalContext *__instance;
+    friend class Singleton;
+    GlobalContext() = default;
 
 public:
     static GlobalContext *instance();
 
     std::string inspect() const override;
-
-private:
-    GlobalContext() = default;
 };
 
 #endif // GLOBAL_CONTEXT_H

@@ -1,17 +1,15 @@
 #ifndef OK_H
 #define OK_H
 
+#include "tools/singleton.h"
 #include "data.h"
 
-class Ok : public Data
+class Ok : public Singleton<Ok, Data>
 {
-    static Ok *__instance;
-
+    friend class Singleton;
     Ok() = default;
 
 public:
-    static Ok *instance();
-
     std::string value() const override;
     bool eql(const Data *) const override;
 };

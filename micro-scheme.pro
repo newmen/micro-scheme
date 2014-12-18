@@ -57,5 +57,7 @@ HEADERS += \
     lang/float_arity_function.h \
     lang/meta.h \
     lang/arguments.h \
-    lang/ok.h
+    lang/ok.h \
+    lang/tools/singleton.h \
+    lang/tools/no_base.h
 

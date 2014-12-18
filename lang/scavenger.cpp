@@ -2,20 +2,9 @@
 #include <assert.h>
 //#include <iostream>
 
-Scavenger *Scavenger::__instance = nullptr;
-Scavenger *Scavenger::instance()
-{
-    if (!__instance)
-    {
-        __instance = new Scavenger();
-    }
-
-    return __instance;
-}
-
 void Scavenger::destroy()
 {
-    delete __instance;
+    delete instance();
 }
 
 Scavenger::~Scavenger()

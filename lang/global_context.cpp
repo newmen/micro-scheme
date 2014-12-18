@@ -7,22 +7,23 @@
 #include "funcs/eq.h"
 #include "funcs/define.h"
 
-GlobalContext *GlobalContext::__instance = nullptr;
 GlobalContext *GlobalContext::instance()
 {
-    if (!__instance)
+    bool filled = !destroyed();
+    GlobalContext *inst = Singleton::instance();
+
+    if (!filled)
     {
-        __instance = new GlobalContext();
-        __instance->assign("+", new Plus());
-        __instance->assign("-", new Minus());
-        __instance->assign("*", new Multiply());
-        __instance->assign("/", new Divide());
-        __instance->assign("if", new If());
-        __instance->assign("=", new Eq());
-        __instance->assign("define", new Define());
+        inst->assign("+", new Plus());
+        inst->assign("-", new Minus());
+        inst->assign("*", new Multiply());
+        inst->assign("/", new Divide());
+        inst->assign("=", new Eq());
+        inst->assign("if", new If());
+        inst->assign("define", new Define());
     }
 
-    return __instance;
+    return inst;
 }
 
 std::string GlobalContext::inspect() const
