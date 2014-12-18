@@ -15,3 +15,10 @@ TEST(UserFunctionTest, SubFunction) {
     EXPECT_STREQ("3", MicroScheme(def).next("(sub 2)").result().c_str());
     EXPECT_ANY_THROW(MicroScheme(def).next("(f 2)").result());
 }
+
+TEST(UserFunctionTest, FunctionAsArgument) {
+    std::string f = "(define (f x) (+ x x 50))";
+    std::string g = "(define (g h x) (h x))";
+    EXPECT_STREQ("54", MicroScheme(f).next(g).next("(g f 2)").result().c_str());
+    EXPECT_STREQ("64", MicroScheme(f).next(g).next("(g f 7)").result().c_str());
+}

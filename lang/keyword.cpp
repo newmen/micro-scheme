@@ -1,5 +1,5 @@
 #include "keyword.h"
-#include "error.h"
+#include "function.h"
 
 Keyword::Keyword(const std::string &name) : _name(name)
 {
@@ -12,7 +12,15 @@ std::string Keyword::inspect() const
 
 const Data *Keyword::invoke(const Context *context) const
 {
-    return context->get(_name)->call(context);
+    const Function *function = context->get(_name);
+    if (function->arity() == 0)
+    {
+        return function->call(context);
+    }
+    else
+    {
+        return function;
+    }
 }
 
 std::string Keyword::name() const
