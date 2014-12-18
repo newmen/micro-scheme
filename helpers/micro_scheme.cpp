@@ -1,10 +1,8 @@
 #include "micro_scheme.h"
-#include <sstream>
 #include "../lang/scavenger.h"
 #include "../lang/global_context.h"
-#include "../lang/parser.h"
 
-MicroScheme::MicroScheme(const std::string &str) : _str(str)
+MicroScheme::MicroScheme(const std::string &str) : _str(str), _parser(_ss)
 {
 }
 
@@ -13,14 +11,20 @@ MicroScheme::~MicroScheme()
     Scavenger::destroy();
 }
 
-std::string MicroScheme::result() const
+MicroScheme &MicroScheme::next(const std::string &str)
 {
-    std::stringstream ss;
-    ss << _str;
+    crank();
+    _str = str;
+    return *this;
+}
 
-    Parser parser(ss);
-    const Symbol *symbol = parser.read();
-    const Data *data = symbol->invoke(GlobalContext::instance());
+std::string MicroScheme::result()
+{
+    return crank()->value();
+}
 
-    return data->value();
+const Data *MicroScheme::crank()
+{
+    _ss << _str;
+    return _parser.read()->invoke(GlobalContext::instance());
 }

@@ -61,3 +61,14 @@ TEST(MicroSchemeTest, IfExpr) {
     EXPECT_ANY_THROW(MicroScheme("(if (= 1 1) 10)").result());
     EXPECT_ANY_THROW(MicroScheme("(if (= 1 1) 10 20 30)").result());
 }
+
+TEST(MicroSchemeTest, DefineExpr) {
+    EXPECT_STREQ("ok", MicroScheme("(define (f) 5)").result().c_str());
+    EXPECT_STREQ("ok", MicroScheme("(define (f x) x)").result().c_str());
+    EXPECT_STREQ("ok", MicroScheme("(define (f x y) (+ (/ x x) y))").result().c_str());
+    EXPECT_ANY_THROW(MicroScheme("(define 1 2)").result());
+    EXPECT_ANY_THROW(MicroScheme("(define (1) 2)").result());
+    EXPECT_ANY_THROW(MicroScheme("(define (1 2) 3)").result());
+    EXPECT_ANY_THROW(MicroScheme("(define (f 2) 3)").result());
+}
+
