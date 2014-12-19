@@ -9,7 +9,7 @@
 
 class Context;
 
-// interface
+// abstract
 class Function : public Data
 {
     const unsigned _arity;

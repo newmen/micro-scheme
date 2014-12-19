@@ -39,7 +39,7 @@ const Data *Define::safeCall(const Context *context, const Arguments &args) cons
         }
     }
 
-    const Function *function = new UserFunction(funcArgs, last, chunks);
+    const Function *function = new UserFunction(funcArgs, chunks, last);
     Context *changingContext = const_cast<Context *>(context);
     changingContext->assign(funcName->name(), function);
 

@@ -28,7 +28,8 @@ SOURCES += main.cpp \
     lang/utils.cpp \
     lang/float_arity_function.cpp \
     lang/ok.cpp \
-    helpers/micro_scheme.cpp
+    helpers/micro_scheme.cpp \
+    lang/variable.cpp
 
 HEADERS += \
     lang/sequence.h \
@@ -61,5 +62,6 @@ HEADERS += \
     lang/ok.h \
     helpers/micro_scheme.h \
     lang/tools/singleton.h \
-    lang/tools/no_base.h
+    lang/tools/no_base.h \
+    lang/variable.h
 

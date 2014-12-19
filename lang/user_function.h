@@ -1,21 +1,23 @@
 #ifndef USER_FUNCTION_H
 #define USER_FUNCTION_H
 
-#include "function.h"
+#include "variable.h"
 #include "keywords.h"
 
-class UserFunction : public Function
+class UserFunction : public Variable
 {
-    const Keywords _args;
-    const Arguments _intermedBodies;
-    const Symbol *_body;
+    const Keywords _arguments;
+    const Arguments _intermediateBodies;
 
-    UserFunction(const Symbol *body);
 public:
-    UserFunction(const Keywords &args, const Symbol *body, const Arguments &intermedBodies = Arguments());
+    UserFunction(const Keywords &args, const Arguments &intermedBodies, const Symbol *body);
+
+protected:
+    const Data *safeCall(const Context *context, const Arguments &args) const;
 
 private:
-    const Data *safeCall(const Context * context, const Arguments &args) const;
+    void invokeIntermediateBodies(Context *context) const;
+    void assignArgumentsTo(Context *context, const Arguments &args) const;
 };
 
 #endif // USER_FUNCTION_H
