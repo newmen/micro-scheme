@@ -28,9 +28,7 @@ void Context::assign(const std::string &name, const Function *function)
 Context *Context::wrap(const Context *other) const
 {
     const Scope *root = common(other);
-    const Scope *internal = append(other, root);
-    const Scope *external = append(this, root, internal);
-    return new Context(external);
+    return new Context(append(this, root, other));
 }
 
 const Scope *Context::common(const Context *other) const
@@ -55,7 +53,7 @@ const Scope *Context::append(const Scope *source, const Scope *root, const Scope
 {
     if (root == source)
     {
-        return target ? target : root;
+        return target;
     }
     else
     {

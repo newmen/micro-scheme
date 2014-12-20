@@ -1,5 +1,4 @@
 #include "scope.h"
-#include "closure.h"
 
 Scope::Scope(const Scope *parent) : _parent(parent)
 {

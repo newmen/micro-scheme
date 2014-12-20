@@ -17,14 +17,16 @@ public:
     Context(const Scope *parent = nullptr);
 
     std::string inspect() const override;
-    const Table &table() const override;
 
     void assign(const std::string &name, const Function *function);
     Context *wrap(const Context *other) const;
 
+protected:
+    const Table &table() const override;
+
 private:
     const Scope *common(const Context *other) const;
-    const Scope *append(const Scope *source, const Scope *root, const Scope *target = nullptr) const;
+    const Scope *append(const Scope *source, const Scope *root, const Scope *target) const;
 };
 
 #endif // CONTEXT_H
