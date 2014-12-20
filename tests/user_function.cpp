@@ -35,3 +35,10 @@ TEST(UserFunctionTest, Closure) {
     EXPECT_STREQ("15", MicroScheme(def).next("((f 5) 10)").result().c_str());
     EXPECT_STREQ("-1", MicroScheme(def).next("((f 1) -2)").result().c_str());
 }
+
+TEST(UserFunctionTest, Closure2) {
+    std::string f = "(define (f x) (define (g y z) (* x (+ y z))) g)";
+    std::string g = "(define (g f x y) (- (f x y) 10))";
+    EXPECT_STREQ("5", MicroScheme(f).next(g).next("(g (f 3) 1 4)").result().c_str());
+    EXPECT_STREQ("-7", MicroScheme(f).next(g).next("(g (f 1) -2 5)").result().c_str());
+}

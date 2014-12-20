@@ -17,8 +17,8 @@ protected:
     const Data *safeCall(const Context *context, const Symbols &args) const;
 
 private:
+    void assignArgumentsTo(Context *subContext, const Context *extContext, const Symbols &args) const;
     void invokeIntermediateBodies(Context *context) const;
-    void assignArgumentsTo(Context *context, const Symbols &args) const;
 };
 
 #endif // USER_FUNCTION_H
