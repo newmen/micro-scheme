@@ -27,7 +27,7 @@ dirs:
 	mkdir -p $(OBJECTS_DIRS)
 
 $(OBJS_DIR)/%.d: $(SRC_DIR)/%.cpp
-	$(CXX) -c $(FLAGS) -MM -MF $@ $<
+	$(CXX) $(FLAGS) -MM -MF $@ $<
 
 $(OBJS_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) -c $(FLAGS) -o $@ $<
