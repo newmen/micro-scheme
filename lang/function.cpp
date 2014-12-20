@@ -4,7 +4,7 @@ Function::Function(unsigned arity) : _arity(arity)
 {
 }
 
-void Function::checkArity(const Arguments &args) const
+void Function::checkArity(const Symbols &args) const
 {
     unsigned argsNum = args.size();
     if (arity() != argsNum)
@@ -28,7 +28,7 @@ bool Function::eql(const Data *other) const
     return this == other;
 }
 
-const Data *Function::call(const Context *context, const Arguments &args) const
+const Data *Function::call(const Context *context, const Symbols &args) const
 {
     checkArity(args);
     return safeCall(context, args);
@@ -36,7 +36,7 @@ const Data *Function::call(const Context *context, const Arguments &args) const
 
 const Data *Function::call(const Context *context) const
 {
-    return call(context, Arguments());
+    return call(context, Symbols());
 }
 
 unsigned Function::arity() const

@@ -6,7 +6,7 @@ Multiply::Multiply() : FloatArityFunction(2)
 {
 }
 
-const Data *Multiply::safeCall(const Context *context, const Arguments &args) const
+const Data *Multiply::safeCall(const Context *context, const Symbols &args) const
 {
     double prod = 1;
     for (const Symbol *symbol : args)

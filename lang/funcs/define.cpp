@@ -9,9 +9,9 @@ Define::Define() : Meta(2)
 {
 }
 
-const Data *Define::safeCall(const Context *context, const Arguments &args) const
+const Data *Define::safeCall(const Context *context, const Symbols &args) const
 {
-    Arguments chunks(args);
+    Symbols chunks(args);
     const Sequence *signature = dynamic_cast<const Sequence *>(chunks.front());
     chunks.pop_front();
 

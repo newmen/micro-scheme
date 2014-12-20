@@ -60,12 +60,12 @@ HEADERS += \
     lang/funcs/multiply.h \
     lang/float_arity_function.h \
     lang/meta.h \
-    lang/arguments.h \
     lang/ok.h \
     helpers/micro_scheme.h \
     lang/tools/singleton.h \
     lang/tools/no_base.h \
     lang/variable.h \
     lang/scope.h \
-    lang/closure.h
+    lang/closure.h \
+    lang/symbols.h
 

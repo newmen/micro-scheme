@@ -3,7 +3,7 @@
 
 #include <string>
 #include "data.h"
-#include "arguments.h"
+#include "symbols.h"
 #include "error.h"
 #include "utils.h"
 
@@ -24,15 +24,15 @@ class Function : public Data
 protected:
     Function(unsigned arity);
 
-    virtual void checkArity(const Arguments &args) const;
-    virtual const Data *safeCall(const Context *context, const Arguments &args) const = 0;
+    virtual void checkArity(const Symbols &args) const;
+    virtual const Data *safeCall(const Context *context, const Symbols &args) const = 0;
 
 public:
     std::string inspect() const override;
     std::string value() const override;
     bool eql(const Data *other) const override;
 
-    virtual const Data *call(const Context *context, const Arguments &args) const;
+    virtual const Data *call(const Context *context, const Symbols &args) const;
     const Data *call(const Context *context) const;
 
     unsigned arity() const;

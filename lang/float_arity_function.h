@@ -6,9 +6,9 @@
 // abstract
 class FloatArityFunction : public Function
 {
-    struct ArityError : public Error
+    struct MinArityError : public Error
     {
-        ArityError(unsigned current, unsigned passed) :
+        MinArityError(unsigned current, unsigned passed) :
             Error(std::string("Wrong minimum number of arguments (") +
                   Utils::toString(passed) + " for " + Utils::toString(current) + "...)") {}
     };
@@ -16,7 +16,7 @@ class FloatArityFunction : public Function
 protected:
     FloatArityFunction(unsigned minArity);
 
-    void checkArity(const Arguments &args) const override;
+    void checkArity(const Symbols &args) const override;
 };
 
 #endif // FLOAT_ARITY_FUNCTION_H

@@ -8,7 +8,7 @@ struct Minus : public Function
     Minus();
 
 protected:
-    const Data *safeCall(const Context *context, const Arguments &args) const override;
+    const Data *safeCall(const Context *context, const Symbols &args) const override;
 };
 
 #endif // MINUS_H

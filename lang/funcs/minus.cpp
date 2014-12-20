@@ -6,7 +6,7 @@ Minus::Minus() : Function(2)
 {
 }
 
-const Data *Minus::safeCall(const Context *context, const Arguments &args) const
+const Data *Minus::safeCall(const Context *context, const Symbols &args) const
 {
     const Data *first = args.front()->invoke(context);
     const Data *second = args.back()->invoke(context);

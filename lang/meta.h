@@ -13,10 +13,10 @@ protected:
     Meta(unsigned arity);
 
 public:
-    const Data *call(const Context *context, const Arguments &args) const override;
+    const Data *call(const Context *context, const Symbols &args) const override;
 
 protected:
-    Keywords toKeywords(const Arguments &symbols) const;
+    Keywords toKeywords(const Symbols &symbols) const;
 
 private:
     void checkSequence(const Symbol *symbol) const;
@@ -30,7 +30,7 @@ Meta<F>::Meta(unsigned arity) : F(arity)
 }
 
 template <class F>
-const Data *Meta<F>::call(const Context *context, const Arguments &args) const
+const Data *Meta<F>::call(const Context *context, const Symbols &args) const
 {
     this->checkArity(args);
     this->checkSequence(args.front());
@@ -39,7 +39,7 @@ const Data *Meta<F>::call(const Context *context, const Arguments &args) const
 }
 
 template <class F>
-Keywords Meta<F>::toKeywords(const Arguments &symbols) const
+Keywords Meta<F>::toKeywords(const Symbols &symbols) const
 {
     Keywords result;
     for (const Object *symbol : symbols)

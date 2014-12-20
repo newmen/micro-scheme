@@ -8,7 +8,7 @@ struct Eq : public Function
     Eq();
 
 protected:
-    const Data *safeCall(const Context *context, const Arguments &args) const override;
+    const Data *safeCall(const Context *context, const Symbols &args) const override;
 };
 
 #endif // EQ_H

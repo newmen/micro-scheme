@@ -6,7 +6,7 @@ Plus::Plus() : FloatArityFunction(2)
 {
 }
 
-const Data *Plus::safeCall(const Context *context, const Arguments &args) const
+const Data *Plus::safeCall(const Context *context, const Symbols &args) const
 {
     double sum = 0;
     for (const Symbol *symbol : args)

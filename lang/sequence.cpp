@@ -5,7 +5,7 @@
 #include "function.h"
 #include "error.h"
 
-Sequence::Sequence(const Arguments &args) : _symbols(args)
+Sequence::Sequence(const Symbols &args) : _symbols(args)
 {
 }
 
@@ -42,7 +42,7 @@ const Data *Sequence::invoke(const Context *context) const
     return function->call(context, tail());
 }
 
-const Arguments &Sequence::symbols() const
+const Symbols &Sequence::symbols() const
 {
     return _symbols;
 }
@@ -52,9 +52,9 @@ const Symbol *Sequence::head() const
     return _symbols.front();
 }
 
-Arguments Sequence::tail() const
+Symbols Sequence::tail() const
 {
-    Arguments result(_symbols);
+    Symbols result(_symbols);
     result.pop_front();
     return result;
 }

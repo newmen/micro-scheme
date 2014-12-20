@@ -13,7 +13,7 @@ public:
 protected:
     Variable(unsigned arity, const Symbol *body);
 
-    const Data *safeCall(const Context * context, const Arguments &) const;
+    const Data *safeCall(const Context * context, const Symbols &) const;
     const Symbol *body() const;
 };
 

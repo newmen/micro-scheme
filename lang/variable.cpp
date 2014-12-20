@@ -9,7 +9,7 @@ Variable::Variable(unsigned arity, const Symbol *body) :
 {
 }
 
-const Data *Variable::safeCall(const Context *context, const Arguments &) const
+const Data *Variable::safeCall(const Context *context, const Symbols &) const
 {
     return _body->invoke(context);
 }
