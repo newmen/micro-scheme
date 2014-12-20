@@ -5,7 +5,7 @@
 
 class Variable : public Function
 {
-    const Symbol *_body;
+    const Symbol *const _body;
 
 public:
     Variable(const Symbol *body);

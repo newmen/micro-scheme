@@ -6,11 +6,12 @@
 
 class UserFunction : public Variable
 {
+    const Context *const _externalContext;
     const Keywords _arguments;
     const Arguments _intermediateBodies;
 
 public:
-    UserFunction(const Keywords &args, const Arguments &intermedBodies, const Symbol *body);
+    UserFunction(const Context *context, const Keywords &args, const Arguments &intermedBodies, const Symbol *body);
 
 protected:
     const Data *safeCall(const Context *context, const Arguments &args) const;

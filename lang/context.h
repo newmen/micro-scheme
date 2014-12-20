@@ -1,18 +1,11 @@
 #ifndef CONTEXT_H
 #define CONTEXT_H
 
-#include <unordered_map>
-#include <string>
-#include "object.h"
-#include "error.h"
-#include "function.h"
+#include "scope.h"
 
-class Context : public Object
+class Context : public Scope
 {
-    typedef std::unordered_map<std::string, const Function *> Table;
-
     Table _table;
-    const Context *_parent;
 
     struct DuplicationError : public Error
     {
@@ -20,19 +13,18 @@ class Context : public Object
             Error(std::string("Duplication ") + name) {}
     };
 
-    struct UndefinedError : public Error
-    {
-        UndefinedError(const std::string &name) :
-            Error(std::string("Undefined \"") + name + "\" symbol") {}
-    };
-
 public:
-    Context(const Context *parent = nullptr);
+    Context(const Scope *parent = nullptr);
 
     std::string inspect() const override;
+    const Table &table() const override;
 
     void assign(const std::string &name, const Function *function);
-    const Function *get(const std::string &name) const;
+    Context *wrap(const Context *other) const;
+
+private:
+    const Scope *common(const Context *other) const;
+    const Scope *append(const Scope *source, const Scope *root, const Scope *target = nullptr) const;
 };
 
 #endif // CONTEXT_H

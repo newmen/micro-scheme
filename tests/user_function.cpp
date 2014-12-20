@@ -28,3 +28,10 @@ TEST(UserFunctionTest, Alias) {
     EXPECT_STREQ("7", MicroScheme(def).next("(f 2 5)").result().c_str());
     EXPECT_STREQ("-6", MicroScheme(def).next("(f 3 -4 -5)").result().c_str());
 }
+
+TEST(UserFunctionTest, Closure) {
+    std::string def = "(define (f x) (define (sub y) (+ x y)) sub)";
+    EXPECT_STREQ("function", MicroScheme(def).next("(f 0)").result().c_str());
+    EXPECT_STREQ("15", MicroScheme(def).next("((f 5) 10)").result().c_str());
+    EXPECT_STREQ("-1", MicroScheme(def).next("((f 1) -2)").result().c_str());
+}

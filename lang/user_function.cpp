@@ -1,7 +1,7 @@
 #include "user_function.h"
 
-UserFunction::UserFunction(const Keywords &args, const Arguments &intermedBodies, const Symbol *body) :
-    Variable(args.size(), body), _arguments(args), _intermediateBodies(intermedBodies)
+UserFunction::UserFunction(const Context *context, const Keywords &args, const Arguments &intermedBodies, const Symbol *body) :
+    Variable(args.size(), body), _externalContext(context), _arguments(args), _intermediateBodies(intermedBodies)
 {
 }
 
@@ -13,7 +13,7 @@ const Data *UserFunction::safeCall(const Context *context, const Arguments &args
     }
     else
     {
-        Context *subContext = new Context(context);
+        Context *subContext = _externalContext->wrap(context);
         invokeIntermediateBodies(subContext);
         assignArgumentsTo(subContext, args);
 
