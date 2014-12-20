@@ -7,7 +7,7 @@ Context::Context(const Scope *parent) : Scope(parent)
 
 std::string Context::inspect() const
 {
-    return std::string("Context") + Object::inspect();
+    return std::string("context") + Object::inspect();
 }
 
 const Context::Table &Context::table() const

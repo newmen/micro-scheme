@@ -28,7 +28,6 @@ protected:
     virtual const Data *safeCall(const Context *context, const Symbols &args) const = 0;
 
 public:
-    std::string inspect() const override;
     std::string value() const override;
     bool eql(const Data *other) const override;
 

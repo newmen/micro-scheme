@@ -28,5 +28,5 @@ GlobalContext *GlobalContext::instance()
 
 std::string GlobalContext::inspect() const
 {
-    return std::string("GlobalContext") + Object::inspect();
+    return std::string("global") + Object::inspect();
 }

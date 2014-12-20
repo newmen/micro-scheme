@@ -7,7 +7,7 @@ Closure::Closure(const Scope *parent, const Table &table) :
 
 std::string Closure::inspect() const
 {
-    return std::string("Closure") + Object::inspect();
+    return std::string("closure") + Object::inspect();
 }
 
 const Scope::Table &Closure::table() const

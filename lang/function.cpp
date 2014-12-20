@@ -13,11 +13,6 @@ void Function::checkArity(const Symbols &args) const
     }
 }
 
-std::string Function::inspect() const
-{
-    return std::string("Function") + Object::inspect();
-}
-
 std::string Function::value() const
 {
     return "function";
