@@ -54,7 +54,8 @@ const Symbol *Statement::head() const
 
 Symbols Statement::tail() const
 {
-    Symbols result(_symbols);
-    result.pop_front();
-    return result;
+    Symbols::const_iterator begin = _symbols.cbegin();
+    std::advance(begin, 1);
+
+    return { begin, _symbols.cend() };
 }

@@ -31,7 +31,9 @@ SOURCES += main.cpp \
     lang/variable.cpp \
     lang/scope.cpp \
     lang/closure.cpp \
-    lang/statement.cpp
+    lang/statement.cpp \
+    lang/funcs/lambda.cpp \
+    lang/meta_function.cpp
 
 HEADERS += \
     lang/parser.h \
@@ -58,7 +60,6 @@ HEADERS += \
     lang/funcs/divide.h \
     lang/funcs/multiply.h \
     lang/float_arity_function.h \
-    lang/meta.h \
     lang/ok.h \
     helpers/micro_scheme.h \
     lang/tools/singleton.h \
@@ -67,5 +68,7 @@ HEADERS += \
     lang/scope.h \
     lang/closure.h \
     lang/symbols.h \
-    lang/statement.h
+    lang/statement.h \
+    lang/funcs/lambda.h \
+    lang/meta_function.h
 

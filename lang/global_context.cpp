@@ -6,6 +6,7 @@
 #include "funcs/if.h"
 #include "funcs/eq.h"
 #include "funcs/define.h"
+#include "funcs/lambda.h"
 
 GlobalContext *GlobalContext::instance()
 {
@@ -21,6 +22,7 @@ GlobalContext *GlobalContext::instance()
         inst->assign("=", new Eq());
         inst->assign("if", new If());
         inst->assign("define", new Define());
+        inst->assign("lambda", new Lambda());
     }
 
     return inst;

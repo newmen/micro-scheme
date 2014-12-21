@@ -46,3 +46,10 @@ TEST(UserFunctionTest, Closure2) {
     EXPECT_STREQ("5", MicroScheme(f).next(g).next("(g (f 3) 1 4)").result().c_str());
     EXPECT_STREQ("-7", MicroScheme(f).next(g).next("(g (f 1) -2 5)").result().c_str());
 }
+
+TEST(UserFunctionTest, LambdaClosure) {
+    std::string f = "(define (f x) (lambda (y z) (* (+ x y) z)))";
+    std::string g = "(define (g f x y) (/ (f x 5) y))";
+    EXPECT_STREQ("2.5", MicroScheme(f).next(g).next("(g (f 2) 3 10)").result().c_str());
+    EXPECT_STREQ("-1.25", MicroScheme(f).next(g).next("(g (f -3) 5 -8)").result().c_str());
+}

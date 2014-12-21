@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <string>
 #include "../helpers/micro_scheme.h"
 
 TEST(MicroSchemeTest, WrongExpr) {
@@ -67,9 +68,20 @@ TEST(MicroSchemeTest, DefineExpr) {
     EXPECT_STREQ("ok", MicroScheme("(define (f) 5)").result().c_str());
     EXPECT_STREQ("ok", MicroScheme("(define (f x) x)").result().c_str());
     EXPECT_STREQ("ok", MicroScheme("(define (f x y) (+ (/ x x) y))").result().c_str());
+    EXPECT_STREQ("ok", MicroScheme("(define (f x) (define g 2) g)").result().c_str());
+    EXPECT_ANY_THROW(MicroScheme("(define n)").result());
     EXPECT_ANY_THROW(MicroScheme("(define 1 2)").result());
     EXPECT_ANY_THROW(MicroScheme("(define (1) 2)").result());
     EXPECT_ANY_THROW(MicroScheme("(define (1 2) 3)").result());
     EXPECT_ANY_THROW(MicroScheme("(define (f 2) 3)").result());
+    EXPECT_ANY_THROW(MicroScheme("(define (f) 2 3)").result());
 }
 
+TEST(MicroSchemeTest, LambdaExpr) {
+    EXPECT_STREQ("function", MicroScheme("(lambda (n) n)").result().c_str());
+    EXPECT_STREQ("4", MicroScheme("((lambda (n) (+ n 2)) 2)").result().c_str());
+    EXPECT_ANY_THROW(MicroScheme("(lambda n)").result());
+    EXPECT_ANY_THROW(MicroScheme("(lambda n n)").result());
+    EXPECT_ANY_THROW(MicroScheme("(lambda (1) 2)").result());
+    EXPECT_ANY_THROW(MicroScheme("(lambda (g 1) 2)").result());
+}

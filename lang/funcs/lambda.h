@@ -1,14 +1,14 @@
-#ifndef DEFINE_H
-#define DEFINE_H
+#ifndef LAMBDA_H
+#define LAMBDA_H
 
 #include "../meta_function.h"
 
-struct Define : public MetaFunction
+struct Lambda : public MetaFunction
 {
-    Define() = default;
+    Lambda() = default;
 
 protected:
     const Data *safeCall(const Context *context, const Symbols &args) const override;
 };
 
-#endif // DEFINE_H
+#endif // LAMBDA_H
