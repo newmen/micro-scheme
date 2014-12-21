@@ -63,6 +63,7 @@ TEST(MicroSchemeTest, IfExpr) {
 }
 
 TEST(MicroSchemeTest, DefineExpr) {
+    EXPECT_STREQ("ok", MicroScheme("(define n 2)").result().c_str());
     EXPECT_STREQ("ok", MicroScheme("(define (f) 5)").result().c_str());
     EXPECT_STREQ("ok", MicroScheme("(define (f x) x)").result().c_str());
     EXPECT_STREQ("ok", MicroScheme("(define (f x y) (+ (/ x x) y))").result().c_str());

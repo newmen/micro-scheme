@@ -15,7 +15,7 @@ protected:
     static bool destroyed();
 
 public:
-    virtual ~Singleton();
+    ~Singleton();
 
     static S *instance();
 };

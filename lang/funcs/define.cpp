@@ -11,13 +11,20 @@ Define::Define() : Meta(2)
 
 const Data *Define::safeCall(const Context *context, const Symbols &args) const
 {
-    Symbols chunks(args);
-    const Statement *signature = dynamic_cast<const Statement *>(chunks.front());
-    chunks.pop_front();
+    Keywords funcArgs;
+    Symbols::const_iterator arg = args.begin();
+    const Keyword *funcName = dynamic_cast<const Keyword *>(*arg);
+    if (!funcName)
+    {
+        checkSignature(*arg);
 
-    const Keyword *funcName = dynamic_cast<const Keyword *>(signature->head());
-    Keywords funcArgs = toKeywords(signature->tail());
+        const Statement *signature = dynamic_cast<const Statement *>(*arg);
+        funcName = dynamic_cast<const Keyword *>(signature->head());
+        funcArgs = toKeywords(signature->tail());
+    }
 
+    std::advance(arg, 1);
+    Symbols chunks(arg, args.cend());
     const Symbol *last = chunks.back();
     chunks.pop_back();
 
