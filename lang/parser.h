@@ -5,7 +5,7 @@
 #include "error.h"
 #include "number.h"
 #include "keyword.h"
-#include "sequence.h"
+#include "statement.h"
 
 class Parser
 {
@@ -36,7 +36,7 @@ private:
 
     const Keyword *readKeyword();
     const Number *readNumber();
-    const Sequence *readSequence();
+    const Statement *readStatement();
 
     bool bon(char c);
     bool bos(char c) const;

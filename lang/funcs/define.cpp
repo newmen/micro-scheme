@@ -1,6 +1,6 @@
 #include "define.h"
 #include <sstream>
-#include "../sequence.h"
+#include "../statement.h"
 #include "../keyword.h"
 #include "../user_function.h"
 #include "../ok.h"
@@ -12,7 +12,7 @@ Define::Define() : Meta(2)
 const Data *Define::safeCall(const Context *context, const Symbols &args) const
 {
     Symbols chunks(args);
-    const Sequence *signature = dynamic_cast<const Sequence *>(chunks.front());
+    const Statement *signature = dynamic_cast<const Statement *>(chunks.front());
     chunks.pop_front();
 
     const Keyword *funcName = dynamic_cast<const Keyword *>(signature->head());
@@ -24,8 +24,8 @@ const Data *Define::safeCall(const Context *context, const Symbols &args) const
     unsigned i = 1;
     for (const Symbol *symbol : chunks)
     {
-        const Sequence *sequence = dynamic_cast<const Sequence *>(symbol);
-        if (sequence)
+        const Statement *statement = dynamic_cast<const Statement *>(symbol);
+        if (statement)
         {
             ++i;
         }
@@ -34,7 +34,7 @@ const Data *Define::safeCall(const Context *context, const Symbols &args) const
             std::stringstream ss;
             ss << "One of intermediate define function body argument ("
                << i << " of " << (args.size() - 1)
-               << ") is not a sequence";
+               << ") is not a statement";
             throw Error(ss.str());
         }
     }

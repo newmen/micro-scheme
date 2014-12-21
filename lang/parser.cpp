@@ -17,7 +17,7 @@ const Symbol *Parser::read()
     }
     else if (c == '(')
     {
-        return readSequence();
+        return readStatement();
     }
     else if (bon(c))
     {
@@ -106,7 +106,7 @@ const Number *Parser::readNumber()
     return new Number(number);
 }
 
-const Sequence *Parser::readSequence()
+const Statement *Parser::readStatement()
 {
     Symbols symbols;
 
@@ -129,10 +129,10 @@ const Sequence *Parser::readSequence()
 
     if (symbols.empty())
     {
-        throw ParseError("Invalid empty sequence");
+        throw ParseError("Invalid empty statement");
     }
 
-    return new Sequence(symbols);
+    return new Statement(symbols);
 }
 
 bool Parser::bon(char c)

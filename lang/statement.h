@@ -1,16 +1,16 @@
-#ifndef SEQUENCE_H
-#define SEQUENCE_H
+#ifndef STATEMENT_H
+#define STATEMENT_H
 
 #include <list>
 #include "symbol.h"
 #include "symbols.h"
 
-class Sequence : public Symbol
+class Statement : public Symbol
 {
     const Symbols _symbols;
 
 public:
-    Sequence(const Symbols &args);
+    Statement(const Symbols &args);
 
     std::string inspect() const override;
     const Data *invoke(const Context *context) const override;
@@ -20,4 +20,4 @@ public:
     Symbols tail() const;
 };
 
-#endif // SEQUENCE_H
+#endif // STATEMENT_H

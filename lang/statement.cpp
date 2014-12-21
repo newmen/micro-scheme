@@ -1,15 +1,15 @@
-#include "sequence.h"
+#include "statement.h"
 #include <sstream>
 #include "context.h"
 #include "keyword.h"
 #include "function.h"
 #include "error.h"
 
-Sequence::Sequence(const Symbols &args) : _symbols(args)
+Statement::Statement(const Symbols &args) : _symbols(args)
 {
 }
 
-std::string Sequence::inspect() const
+std::string Statement::inspect() const
 {
     std::stringstream ss;
     ss << "(" << head()->inspect();
@@ -22,13 +22,13 @@ std::string Sequence::inspect() const
     return ss.str() + Object::inspect();
 }
 
-const Data *Sequence::invoke(const Context *context) const
+const Data *Statement::invoke(const Context *context) const
 {
     const Data *key = head()->invoke(context);
-    const Sequence *sequence = dynamic_cast<const Sequence *>(key);
-    if (sequence)
+    const Statement *statement = dynamic_cast<const Statement *>(key);
+    if (statement)
     {
-        key = sequence->invoke(context);
+        key = statement->invoke(context);
     }
 
     const Function *function = dynamic_cast<const Function *>(key);
@@ -42,17 +42,17 @@ const Data *Sequence::invoke(const Context *context) const
     return function->call(context, tail());
 }
 
-const Symbols &Sequence::symbols() const
+const Symbols &Statement::symbols() const
 {
     return _symbols;
 }
 
-const Symbol *Sequence::head() const
+const Symbol *Statement::head() const
 {
     return _symbols.front();
 }
 
-Symbols Sequence::tail() const
+Symbols Statement::tail() const
 {
     Symbols result(_symbols);
     result.pop_front();

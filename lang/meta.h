@@ -1,7 +1,7 @@
 #ifndef META_H
 #define META_H
 
-#include "sequence.h"
+#include "statement.h"
 #include "keyword.h"
 #include "keywords.h"
 
@@ -19,7 +19,7 @@ protected:
     Keywords toKeywords(const Symbols &symbols) const;
 
 private:
-    void checkSequence(const Symbol *symbol) const;
+    void checkStatement(const Symbol *symbol) const;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ template <class F>
 const Data *Meta<F>::call(const Context *context, const Symbols &args) const
 {
     this->checkArity(args);
-    this->checkSequence(args.front());
+    this->checkStatement(args.front());
 
     return this->safeCall(context, args);
 }
@@ -52,20 +52,20 @@ Keywords Meta<F>::toKeywords(const Symbols &symbols) const
 }
 
 template <class F>
-void Meta<F>::checkSequence(const Symbol *symbol) const
+void Meta<F>::checkStatement(const Symbol *symbol) const
 {
-    const Sequence *sequence = dynamic_cast<const Sequence *>(symbol);
-    if (!sequence)
+    const Statement *statement = dynamic_cast<const Statement *>(symbol);
+    if (!statement)
     {
-        throw Error("The first argument of define should be a sequence");
+        throw Error("The first argument of define should be a statement");
     }
 
-    for (const Object *symbol : sequence->symbols())
+    for (const Object *symbol : statement->symbols())
     {
         const Keyword *keyword = dynamic_cast<const Keyword *>(symbol);
         if (!keyword)
         {
-            throw Error("Each argument of define sequence should be a word");
+            throw Error("Each argument of first define statement should be a word");
         }
     }
 }

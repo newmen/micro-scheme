@@ -6,7 +6,6 @@ CONFIG -= qt
 QMAKE_CXXFLAGS += -std=c++11
 
 SOURCES += main.cpp \
-    lang/sequence.cpp \
     lang/parser.cpp \
     lang/context.cpp \
     lang/global_context.cpp \
@@ -31,10 +30,10 @@ SOURCES += main.cpp \
     helpers/micro_scheme.cpp \
     lang/variable.cpp \
     lang/scope.cpp \
-    lang/closure.cpp
+    lang/closure.cpp \
+    lang/statement.cpp
 
 HEADERS += \
-    lang/sequence.h \
     lang/parser.h \
     lang/utils.h \
     lang/context.h \
@@ -67,5 +66,6 @@ HEADERS += \
     lang/variable.h \
     lang/scope.h \
     lang/closure.h \
-    lang/symbols.h
+    lang/symbols.h \
+    lang/statement.h
 
