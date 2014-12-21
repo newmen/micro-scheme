@@ -34,5 +34,6 @@ $(OBJS_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 clean:
 	rm -rf $(OBJS_DIR)
+	$(MAKE) -C $(TESTS_DIR) clean
 
 include $(wildcard $(addsuffix /*.d, $(OBJECTS_DIRS)))
