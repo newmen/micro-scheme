@@ -1,7 +1,7 @@
 #ifndef SCOPE_H
 #define SCOPE_H
 
-#include <unordered_map>
+#include <map>
 #include <string>
 #include "object.h"
 #include "error.h"
@@ -22,7 +22,7 @@ class Scope : public Object
     };
 
 protected:
-    typedef std::unordered_map<std::string, const Function *> Table;
+    typedef std::map<std::string, const Function *> Table;
 
     Scope(const Scope *parent = nullptr);
 
